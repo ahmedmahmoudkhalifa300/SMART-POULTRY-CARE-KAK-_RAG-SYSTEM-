@@ -1,0 +1,2389 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poultry Disease RAG System — Viva Guide</title>
+    <style>
+        /* ===== FONTS ===== */
+        @font-face {
+            font-family: 'NotoSansArabic';
+            src: local('Noto Sans Arabic'), local('NotoSansArabic');
+        }
+
+        /* ===== BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Noto Sans Arabic', 'Segoe UI', Arial, sans-serif;
+            font-size: 11pt;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #ffffff;
+            direction: rtl;
+            text-align: right;
+            padding: 0;
+        }
+
+        /* ===== PAGE SETUP ===== */
+        @page {
+            size: A4;
+            margin: 20mm 18mm 25mm 18mm;
+            @bottom-center {
+                content: counter(page);
+                font-size: 9pt;
+                color: #888;
+            }
+        }
+
+        @page :first {
+            margin-top: 0;
+            @bottom-center { content: none; }
+        }
+
+        /* ===== HEADINGS ===== */
+        h1 {
+            font-size: 24pt;
+            font-weight: bold;
+            color: #0d3b66;
+            margin: 30pt 0 12pt 0;
+            padding-bottom: 8pt;
+            border-bottom: 3px solid #5b8fa8;
+            page-break-after: avoid;
+            direction: rtl;
+            text-align: right;
+        }
+
+        h2 {
+            font-size: 18pt;
+            font-weight: bold;
+            color: #1a5276;
+            margin: 24pt 0 10pt 0;
+            padding-bottom: 6pt;
+            border-bottom: 2px solid #5b8fa8;
+            page-break-after: avoid;
+            direction: rtl;
+            text-align: right;
+        }
+
+        h3 {
+            font-size: 14pt;
+            font-weight: bold;
+            color: #2471a3;
+            margin: 18pt 0 8pt 0;
+            page-break-after: avoid;
+            direction: rtl;
+            text-align: right;
+        }
+
+        h4 {
+            font-size: 12pt;
+            font-weight: bold;
+            color: #2e86c1;
+            margin: 14pt 0 6pt 0;
+            page-break-after: avoid;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* ===== PARAGRAPHS ===== */
+        p {
+            margin: 6pt 0;
+            text-align: justify;
+            direction: rtl;
+            unicode-bidi: embed;
+        }
+
+        /* ===== LISTS ===== */
+        ul, ol {
+            margin: 8pt 0;
+            padding-right: 24pt;
+            padding-left: 0;
+            direction: rtl;
+        }
+
+        li {
+            margin: 4pt 0;
+            text-align: right;
+            direction: rtl;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12pt 0;
+            font-size: 10pt;
+            direction: rtl;
+            page-break-inside: avoid;
+        }
+
+        thead {
+            background-color: #5b8fa8;
+            color: #ffffff;
+        }
+
+        th {
+            padding: 8pt 10pt;
+            text-align: right;
+            font-weight: bold;
+            border: 1px solid #4a7a95;
+            direction: rtl;
+        }
+
+        td {
+            padding: 7pt 10pt;
+            text-align: right;
+            border: 1px solid #ddd;
+            direction: rtl;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #e8f4f8;
+        }
+
+        /* ===== CODE BLOCKS — ALWAYS LTR ===== */
+        pre {
+            background-color: #1e1e2e;
+            color: #cdd6f4;
+            padding: 12pt 14pt;
+            border-radius: 8px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9pt;
+            line-height: 1.5;
+            direction: ltr !important;
+            text-align: left !important;
+            unicode-bidi: isolate;
+            overflow-x: auto;
+            margin: 10pt 0;
+            page-break-inside: avoid;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        code {
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 9.5pt;
+            background-color: #f0f0f0;
+            padding: 1pt 4pt;
+            border-radius: 3px;
+            direction: ltr !important;
+            unicode-bidi: isolate;
+        }
+
+        pre code {
+            background-color: transparent;
+            padding: 0;
+            direction: ltr !important;
+            text-align: left !important;
+        }
+
+        /* ===== BLOCKQUOTE ===== */
+        blockquote {
+            border-right: 4px solid #5b8fa8;
+            border-left: none;
+            padding: 8pt 16pt;
+            margin: 10pt 0;
+            background-color: #f0f7fb;
+            color: #2c3e50;
+            direction: rtl;
+        }
+
+        /* ===== HORIZONTAL RULE ===== */
+        hr {
+            border: none;
+            border-top: 2px solid #5b8fa8;
+            margin: 20pt 0;
+        }
+
+        /* ===== STRONG / BOLD ===== */
+        strong, b {
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        /* ===== LINKS ===== */
+        a {
+            color: #2471a3;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SPECIAL: English/LTR content inside RTL ===== */
+        /* Technical terms, file paths, API endpoints stay LTR */
+        .ltr {
+            direction: ltr;
+            text-align: left;
+            unicode-bidi: isolate;
+            display: inline;
+        }
+
+        /* ===== TITLE PAGE ===== */
+        .title-page {
+            text-align: center;
+            direction: rtl;
+            page-break-after: always;
+            padding-top: 80pt;
+        }
+
+        .title-page h1 {
+            font-size: 32pt;
+            border: none;
+            color: #0d3b66;
+            margin-bottom: 8pt;
+        }
+
+        .title-page .subtitle {
+            font-size: 20pt;
+            color: #5b8fa8;
+            margin-bottom: 30pt;
+        }
+
+        .title-page .edition {
+            font-size: 14pt;
+            color: #666;
+            margin-bottom: 40pt;
+        }
+
+        .title-page .features {
+            font-size: 12pt;
+            color: #444;
+            line-height: 2.2;
+        }
+
+        .title-page .date {
+            font-size: 10pt;
+            color: #999;
+            margin-top: 40pt;
+        }
+
+        /* ===== SECTION BREAKS ===== */
+        .section-break {
+            page-break-before: always;
+        }
+
+        /* ===== EMOJI FALLBACK ===== */
+        /* Ensure emoji don't break layout */
+        .emoji {
+            font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif;
+        }
+
+        /* ===== PRINT OPTIMIZATIONS ===== */
+        @media print {
+            body {
+                font-size: 10pt;
+            }
+
+            pre {
+                font-size: 8.5pt;
+                white-space: pre-wrap;
+            }
+
+            table {
+                font-size: 9pt;
+            }
+
+            h1 { font-size: 22pt; }
+            h2 { font-size: 16pt; }
+            h3 { font-size: 13pt; }
+        }
+    </style>
+</head>
+<body>
+<h1 id="poultry-disease-rag-system-viva-defense-guide">🐔 Poultry Disease RAG System — Viva Defense Guide</h1>
+<h1 id="rag">دليل مناقشة مشروع نظام RAG لأمراض الدواجن</h1>
+<hr />
+<h2 id="table-of-contents">📋 Table of Contents / فهرس المحتويات</h2>
+<ol>
+<li><a href="#1-project-overview--نظرة-عامة-على-المشروع">Project Overview / نظرة عامة على المشروع</a></li>
+<li><a href="#2-system-architecture--بنية-النظام">System Architecture / بنية النظام</a></li>
+<li><a href="#3-module-by-module-explanation--شرح-كل-وحدة-بالتفصيل">Module-by-Module Explanation / شرح كل وحدة بالتفصيل</a></li>
+<li><a href="#4-rag-pipeline-deep-dive--تحليل-معمارية-rag">RAG Pipeline Deep Dive / تحليل معمارية RAG</a></li>
+<li><a href="#5-vision-pipeline-deep-dive--تحليل-معمارية-الرؤية">Vision Pipeline Deep Dive / تحليل معمارية الرؤية</a></li>
+<li><a href="#6-database-design--تصميم-قاعدة-البيانات">Database Design / تصميم قاعدة البيانات</a></li>
+<li><a href="#7-api-design--تصميم-واجهة-البرمجة">API Design / تصميم واجهة البرمجة</a></li>
+<li><a href="#8-frontend-streamlit--الواجهة-الأمامية">Frontend (Streamlit) / الواجهة الأمامية</a></li>
+<li><a href="#9-important-comparisons--مقارنات-مهمة">Important Comparisons / مقارنات مهمة</a></li>
+<li><a href="#10-identified-bugs--fixes--الأخطاء-المكتشفة-والحلول">Identified Bugs &amp; Fixes / الأخطاء المكتشفة والحلول</a></li>
+<li><a href="#11-25-professor-questions--answers--25-سؤال-من-المحاضر-مع-الإجابات">25 Professor Questions &amp; Answers / 25 سؤال من المُحاضر مع الإجابات</a></li>
+<li><a href="#12-viva-cheat-sheet--ورقة-غش-المناقشة">Viva Cheat Sheet / ورقة غش المناقشة</a></li>
+</ol>
+<hr />
+<h2 id="1-project-overview">1. Project Overview / نظرة عامة على المشروع</h2>
+<h3 id="english">English</h3>
+<p>The <strong>Poultry Disease RAG System</strong> is an AI-powered assistant designed for Egyptian poultry farmers, veterinarians, and agricultural specialists. It combines two core AI capabilities:</p>
+<ol>
+<li>
+<p><strong>Retrieval-Augmented Generation (RAG)</strong> — Answers natural-language questions about poultry diseases using a knowledge base of veterinary PDFs/DOCXs, retrieved semantically via vector embeddings and answered by an LLM (OpenRouter/GPT-4o-mini).</p>
+</li>
+<li>
+<p><strong>Image-Based Disease Diagnosis</strong> — A TensorFlow/Keras deep learning classifier predicts the most likely disease from an uploaded poultry image (Coccidiosis, Healthy, New Castle Disease, Salmonella), and the RAG pipeline then explains symptoms, causes, treatment, and prevention in Egyptian Arabic.</p>
+</li>
+</ol>
+<h3 id="arabic">Arabic (العربية)</h3>
+<p>مشروع <strong>نظام RAG لأمراض الدواجن</strong> هو مساعد ذكي مصمم لمربى الدواجن في مصر والأطباء البيطريين وأخصائيي الزراعة. يجمع بين قدرتين أساسيتين:</p>
+<ol>
+<li>
+<p><strong>الاسترجاع المعزز بالتوليد (RAG)</strong> — يجيب على الأسئلة بلغة طبيعية حول أمراض الدواجن باستخدام قاعدة معرفة من ملفات PDF/DOCX بيطري، يتم استرجاعها دلالياً عبر تضمينات المتجهات ويتم الإجابة عليها بواسطة نموذج لغوي كبير (OpenRouter/GPT-4o-mini).</p>
+</li>
+<li>
+<p><strong>تشخيص الأمراض من الصور</strong> — يتنبأ مصنف التعلم العميق (TensorFlow/Keras) بالمرض الأكثر احتمالاً من صورة دواجن مرفوعة (الكوكسيديا، صحي، مرض نيوكاسل، السلمونيلا)، ثم يشرح خط أنابيب RAG الأعراض والأسباب والعلاج والوقاية باللهجة المصرية.</p>
+</li>
+</ol>
+<h3 id="key-features">Key Features / المميزات الرئيسية</h3>
+<table>
+<thead>
+<tr>
+<th>Feature / الميزة</th>
+<th>Description / الوصف</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bilingual Support</td>
+<td>Arabic-first with English codebase</td>
+</tr>
+<tr>
+<td>RAG Pipeline</td>
+<td>Semantic search + LLM generation</td>
+</tr>
+<tr>
+<td>Image Classification</td>
+<td>4-class TensorFlow model</td>
+</tr>
+<tr>
+<td>Conversation Memory</td>
+<td>Per-session history (10 turns)</td>
+</tr>
+<tr>
+<td>Graceful Degradation</td>
+<td>Falls back to raw context if LLM fails</td>
+</tr>
+<tr>
+<td>OCR Fallback</td>
+<td>PyMuPDF + Tesseract for scanned PDFs</td>
+</tr>
+<tr>
+<td>Cross-Encoder Reranking</td>
+<td>Improves retrieval precision</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tech-stack">Tech Stack / التقنيات المستخدمة</h3>
+<div class="highlight"><pre><span></span><code>Backend:        FastAPI + Uvicorn
+Frontend:       Streamlit
+Vector Store:   Custom JSON-backed (with cosine similarity)
+Embeddings:     sentence-transformers (paraphrase-multilingual-MiniLM-L12-v2)
+Reranker:       cross-encoder/ms-marco-MiniLM-L-6-v2
+LLM:            OpenRouter (openai/gpt-4o-mini)
+Vision:         TensorFlow/Keras image classifier
+Database:       SQLite (chat &amp; diagnosis history)
+OCR:            PyMuPDF + Tesseract
+</code></pre></div>
+
+<hr />
+<h2 id="2-system-architecture">2. System Architecture / بنية النظام</h2>
+<h3 id="high-level-architecture">High-Level Architecture / البنية العامة</h3>
+<div class="highlight"><pre><span></span><code>┌─────────────────────────────────────────────────────────┐
+│                    STREAMLIT FRONTEND                    │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌───────────┐  │
+│  │Dashboard │ │Assistant │ │  Image   │ │ Disease   │  │
+│  │          │ │  (Chat)  │ │ Analysis │ │ Library   │  │
+│  └────┬─────┘ └────┬─────┘ └────┬─────┘ └───────────┘  │
+│       │            │            │                        │
+└───────┼────────────┼────────────┼────────────────────────┘
+        │            │            │
+        ▼            ▼            ▼
+┌─────────────────────────────────────────────────────────┐
+│                   FASTAPI BACKEND                        │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐                │
+│  │/chat/    │ │/image/   │ │/upload/  │                │
+│  │          │ │diagnose  │ │pdf       │                │
+│  └────┬─────┘ └────┬─────┘ └──────────┘                │
+│       │            │                                     │
+│       ▼            ▼                                     │
+│  ┌─────────────────────────────┐                        │
+│  │      RAGPipeline            │                        │
+│  │  Retriever → Reranker →     │                        │
+│  │  PromptBuilder → LLM        │                        │
+│  └──────────┬──────────────────┘                        │
+│             │                                            │
+│  ┌──────────▼──────┐  ┌──────────────┐                  │
+│  │  VectorStore    │  │  Predictor   │                  │
+│  │  (JSON + cosine)│  │  (TF Model)  │                  │
+│  └─────────────────┘  └──────────────┘                  │
+│                                                          │
+│  ┌─────────────────┐                                    │
+│  │  SQLite History  │                                    │
+│  └─────────────────┘                                    │
+└─────────────────────────────────────────────────────────┘
+</code></pre></div>
+
+<h3 id="rag-pipeline-flow-rag">RAG Pipeline Flow / تدفق خط أنابيب RAG</h3>
+<div class="highlight"><pre><span></span><code>User Question (Arabic)
+        │
+        ▼
+┌─────────────────┐
+│   Retriever     │  ← Semantic search via embeddings
+│   (top_k=5)     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   Reranker      │  ← Cross-encoder re-scoring
+│   (top_k=3)     │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Prompt Builder  │  ← System prompt + context + history
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   LLM Call      │  ← OpenRouter (GPT-4o-mini)
+│   (with retry)  │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│ Section Extract │  ← Extract relevant section
+└────────┬────────┘
+         │
+         ▼
+    Arabic Answer
+</code></pre></div>
+
+<h3 id="vision-pipeline-flow">Vision Pipeline Flow / تدفق خط أنابيب الرؤية</h3>
+<div class="highlight"><pre><span></span><code>Image Upload (JPG/PNG)
+        │
+        ▼
+┌─────────────────┐
+│  Preprocessing  │  ← Resize (224×224) + Normalize
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  TF Classifier  │  ← 4 classes: Coccidiosis, Healthy,
+│  (Keras model)  │     New Castle Disease, Salmonella
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Confidence     │  ← If &lt; 40%, warn user
+│  Check          │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  RAG Pipeline   │  ← explain_diagnosis(disease, conf)
+│  (retrieve +    │
+│   rerank + LLM) │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│  Arabic Format  │  ← Structured: diagnosis, causes,
+│  (Explainer)    │     symptoms, treatment, prevention
+└────────┬────────┘
+         │
+         ▼
+    Arabic Diagnosis
+</code></pre></div>
+
+<hr />
+<h2 id="3-module-by-module-explanation">3. Module-by-Module Explanation / شرح كل وحدة بالتفصيل</h2>
+<h3 id="31-core-module">3.1 Core Module / وحدة النواة</h3>
+<h4 id="appcoreconfigpy-configuration"><code>app/core/config.py</code> — Configuration / الإعدادات</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Centralizes all configuration. Loads secrets from Streamlit Secrets first, falls back to environment variables. Never hardcodes API keys.</p>
+<p>يمركز كل الإعدادات. يحمل الأسرار من Streamlit Secrets أولاً، ثم ينتقل إلى متغيرات البيئة كبديل. لا يضع مفاتيح API في الكود أبداً.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Settings</span><span class="p">:</span>
+    <span class="n">openrouter_api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">openrouter_model</span><span class="p">:</span> <span class="nb">str</span>          <span class="c1"># default: &quot;openai/gpt-4o-mini&quot;</span>
+    <span class="n">google_api_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">hf_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">chroma_db_path</span><span class="p">:</span> <span class="nb">str</span>            <span class="c1"># default: &quot;./vector_db&quot;</span>
+    <span class="n">model_path</span><span class="p">:</span> <span class="nb">str</span>                <span class="c1"># default: &quot;./models/poultry_classifier.keras&quot;</span>
+    <span class="n">tessdata_prefix</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">chunk_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">450</span>          <span class="c1"># RAG tuning</span>
+    <span class="n">chunk_overlap</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">200</span>       <span class="c1"># RAG tuning</span>
+    <span class="n">retriever_top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>       <span class="c1"># RAG tuning</span>
+    <span class="n">reranker_top_k</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span>        <span class="c1"># RAG tuning</span>
+    <span class="n">image_size</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">)</span> <span class="c1"># Vision tuning</span>
+    <span class="n">disease_classes</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span>     <span class="c1"># Must match model output</span>
+        <span class="s2">&quot;Coccidiosis&quot;</span><span class="p">,</span> <span class="s2">&quot;Healthy&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;New Castle Disease&quot;</span><span class="p">,</span> <span class="s2">&quot;Salmonella&quot;</span>
+    <span class="p">)</span>
+</code></pre></div>
+
+<p><strong>Key Design Decision / قرار تصميم مهم:</strong><br />
+Uses <code>@lru_cache</code> to load settings once per process. Uses <code>_get_secret()</code> helper that tries <code>st.secrets</code> first, then <code>os.environ</code>.</p>
+<h4 id="appcoreloggerpy-logging"><code>app/core/logger.py</code> — Logging / التسجيل</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Provides a shared logger with consistent formatting across all modules.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_logger</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">logging</span><span class="o">.</span><span class="n">Logger</span><span class="p">:</span>
+    <span class="c1"># Format: &quot;2026-08-27 10:30:00 | INFO     | app.rag.pipeline | Message&quot;</span>
+</code></pre></div>
+
+<h4 id="appcoreutilspy-utilities"><code>app/core/utils.py</code> — Utilities / الأدوات المساعدة</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Contains shared utility functions:<br />
+- <code>file_hash()</code> — SHA-256 hash for PDF deduplication<br />
+- <code>ensure_dir()</code> — Create directories if they don't exist<br />
+- <code>Timer</code> — Context manager for timing code blocks<br />
+- <code>Translator</code> — English-to-Arabic translator using <code>deep-translator</code></p>
+<hr />
+<h3 id="32-rag-module-rag">3.2 RAG Module / وحدة RAG</h3>
+<h4 id="appragloaderpy-document-loading"><code>app/rag/loader.py</code> — Document Loading / تحميل المستندات</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Loads PDF and DOCX files from disk. For PDFs, tries <code>pypdf</code> first for clean text extraction. If text is too short (&lt; 500 chars), falls back to OCR using PyMuPDF + Tesseract.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_pdf</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RawDocument</span><span class="p">:</span>
+    <span class="c1"># 1. Try pypdf (fast, clean text)</span>
+    <span class="n">text</span><span class="p">,</span> <span class="n">page_count</span> <span class="o">=</span> <span class="n">_extract_text_with_pypdf</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span>
+    <span class="c1"># 2. If too short, try OCR fallback</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">:</span>
+        <span class="n">ocr_text</span> <span class="o">=</span> <span class="n">_extract_text_with_ocr</span><span class="p">(</span><span class="n">pdf_path</span><span class="p">)</span>
+    <span class="c1"># 3. Return RawDocument with metadata</span>
+</code></pre></div>
+
+<p><strong>Key Feature / ميزة مهمة:</strong><br />
+- Supports both Arabic and English OCR (<code>lang="ara+eng"</code>)<br />
+- Cleans extracted text by removing duplicate sentences and noise artifacts<br />
+- Returns <code>RawDocument</code> dataclass with <code>source_path</code>, <code>text</code>, and <code>metadata</code></p>
+<h4 id="appragpreprocessingpy-text-cleaning"><code>app/rag/preprocessing.py</code> — Text Cleaning / تنظيف النص</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Cleans and normalizes raw document text before chunking. Handles:<br />
+- Unicode normalization (NFKC)<br />
+- Arabic noise patterns from corrupted PDF extraction<br />
+- Duplicate word/sentence removal<br />
+- Symbol cleaning<br />
+- Hyphenated word rejoining</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">clean_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="c1"># 1. Unicode normalization</span>
+    <span class="c1"># 2. Remove noise patterns (Arabic PDF artifacts)</span>
+    <span class="c1"># 3. Remove noise words</span>
+    <span class="c1"># 4. Deduplicate words</span>
+    <span class="c1"># 5. Remove duplicate sentences</span>
+    <span class="c1"># 6. Clean symbols</span>
+</code></pre></div>
+
+<p><strong>Important Patterns / أنماط مهمة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">_NOISE_PATTERNS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sa">r</span><span class="s2">&quot;تم\s*إعداده\s*خصيصاً\s*للمربي\s*المصري&quot;</span><span class="p">,</span>  <span class="c1"># Vaccination guide noise</span>
+    <span class="sa">r</span><span class="s2">&quot;الدليل\s*العلمي\s*الشامل\s*لأمراض&quot;</span><span class="p">,</span>          <span class="c1"># Management guide noise</span>
+    <span class="sa">r</span><span class="s2">&quot;صفحة\s*\d+\s*من\s*\d+&quot;</span><span class="p">,</span>                      <span class="c1"># Page numbers</span>
+<span class="p">]</span>
+</code></pre></div>
+
+<h4 id="appragchunkingpy-text-chunking"><code>app/rag/chunking.py</code> — Text Chunking / تقسيم النص</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Splits cleaned text into overlapping chunks suitable for embedding. Uses sentence-aware splitting first, falls back to word-based splitting.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Chunk</span><span class="p">:</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">metadata</span><span class="p">:</span> <span class="nb">dict</span>  <span class="c1"># {&quot;source&quot;: &quot;file.pdf&quot;, &quot;page&quot;: 3, &quot;chunk_index&quot;: 2}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">chunk_text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">metadata</span><span class="p">,</span> <span class="n">chunk_size</span><span class="o">=</span><span class="mi">450</span><span class="p">,</span> <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">]:</span>
+    <span class="c1"># 1. Try sentence-based splitting (preferred)</span>
+    <span class="c1"># 2. Fall back to word-based splitting with overlap</span>
+</code></pre></div>
+
+<p><strong>Key Parameters / المعاملات الرئيسية:</strong><br />
+- <code>chunk_size=450</code> — Target chunk size (in characters, divided by 8 for word count)<br />
+- <code>chunk_overlap=200</code> — Overlap between consecutive chunks</p>
+<h4 id="appragembeddingspy-embedding-model"><code>app/rag/embeddings.py</code> — Embedding Model / نموذج التضمين</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Wraps <code>sentence-transformers</code> for semantic embeddings. Uses <code>paraphrase-multilingual-MiniLM-L12-v2</code> (384 dimensions, supports Arabic + English).</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingModel</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;paraphrase-multilingual-MiniLM-L12-v2&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dimension</span> <span class="o">=</span> <span class="mi">384</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed_texts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">texts</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+        <span class="c1"># Batch embedding for indexing</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">embed_query</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+        <span class="c1"># Single query embedding for search</span>
+</code></pre></div>
+
+<p><strong>Why this model? / لماذا هذا النموذج؟</strong><br />
+- Supports 50+ languages including Arabic<br />
+- Small size (≈120MB) — fast inference<br />
+- 384 dimensions — good balance of quality and speed</p>
+<h4 id="appragvector_storepy-vector-store"><code>app/rag/vector_store.py</code> — Vector Store / متجر المتجهات</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+A lightweight, local vector store backed by JSON on disk. Stores chunks with their embeddings and performs cosine similarity search.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">VectorStore</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">persist_directory</span><span class="p">,</span> <span class="n">embedding_model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_documents</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># Loaded from JSON</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_store_path</span> <span class="o">=</span> <span class="s2">&quot;poultry_disease_knowledge_base.json&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_chunks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chunks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Chunk</span><span class="p">]):</span>
+        <span class="c1"># Embed and upsert chunks</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">similarity_search</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="c1"># Embed query, compute cosine similarity, return top_k</span>
+</code></pre></div>
+
+<p><strong>Why JSON instead of ChromaDB? / لماذا JSON بدلاً من ChromaDB؟</strong><br />
+- Simpler deployment (no separate server)<br />
+- Easier to debug and inspect<br />
+- Sufficient for small-to-medium knowledge bases<br />
+- No additional dependencies</p>
+<h4 id="appragretrieverpy-retriever"><code>app/rag/retriever.py</code> — Retriever / المسترجع</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Takes a user query and returns the most relevant knowledge-base chunks. Has two entry points:<br />
+- <code>retrieve(query)</code> — General semantic search<br />
+- <code>retrieve_for_disease(disease_name)</code> — Specialized search for image diagnosis</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Retriever</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vector_store</span><span class="o">.</span><span class="n">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">retrieve_for_disease</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disease_name</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="n">query</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;symptoms causes treatment prevention of </span><span class="si">{</span><span class="n">disease_name</span><span class="si">}</span><span class="s2"> in poultry&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">top_k</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="appragrerankerpy-reranker"><code>app/rag/reranker.py</code> — Reranker / إعادة الترتيب</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Re-scores retrieved candidates using a cross-encoder model for better semantic relevance. Falls back to original order if the model fails.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Reranker</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rerank</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="p">,</span> <span class="n">top_k</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+        <span class="c1"># 1. Load cross-encoder model (lazy)</span>
+        <span class="c1"># 2. Score (query, document) pairs</span>
+        <span class="c1"># 3. Sort by score, return top_k</span>
+</code></pre></div>
+
+<p><strong>Why Cross-Encoder? / لماذا مرمّز متقاطع؟</strong><br />
+- Bi-encoders (like sentence-transformers) encode query and document independently<br />
+- Cross-encoders see both together → more accurate relevance scoring<br />
+- Trade-off: slower, so we use it only on top-k candidates (not all documents)</p>
+<h4 id="appragprompt_builderpy-prompt-builder"><code>app/rag/prompt_builder.py</code> — Prompt Builder / بناء الموجه</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Builds the final prompt sent to the LLM. Contains two system prompts:<br />
+- <code>SYSTEM_PROMPT_QA</code> — For general Q&amp;A (Egyptian Arabic dialect)<br />
+- <code>SYSTEM_PROMPT_DIAGNOSIS</code> — For image diagnosis explanations</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">build_qa_prompt</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">context_chunks</span><span class="p">,</span> <span class="n">history</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="c1"># System prompt + conversation history + context + question</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">build_diagnosis_prompt</span><span class="p">(</span><span class="n">disease_name</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">context_chunks</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="c1"># System prompt + disease info + context</span>
+</code></pre></div>
+
+<p><strong>Key Design / تصميم مهم:</strong><br />
+- All prompts are in Egyptian Arabic dialect (عامية مصرية)<br />
+- Structured output format with emoji headers (🐔, 🦠, 🔍, 💊, 🛡️, 📌)<br />
+- Includes disclaimer: "النتيجة دي معمولة بالذكاء الاصطناعي بهدف المساعدة، لكنها ما تغنيش عن تشخيص الطبيب البيطري"</p>
+<h4 id="appragpipelinepy-rag-pipeline-rag"><code>app/rag/pipeline.py</code> — RAG Pipeline / خط أنابيب RAG</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Top-level orchestration: retrieve → rerank → build prompt → call LLM. Includes:<br />
+- Conversation memory (per-session, 10 turns max)<br />
+- Query caching (same query reuses results)<br />
+- Retry with exponential backoff (3 retries)<br />
+- Graceful fallback to raw context if LLM fails</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RAGPipeline</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">answer_question</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">question</span><span class="p">,</span> <span class="n">session_id</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># 1. Get conversation history</span>
+        <span class="c1"># 2. Retrieve + rerank (cached)</span>
+        <span class="c1"># 3. Build QA prompt</span>
+        <span class="c1"># 4. Call LLM (with retry)</span>
+        <span class="c1"># 5. Extract relevant section</span>
+        <span class="c1"># 6. Save to conversation memory</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;answer&quot;</span><span class="p">:</span> <span class="n">response</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="n">top_chunks</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">explain_diagnosis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">disease_name</span><span class="p">,</span> <span class="n">confidence</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># 1. Retrieve for disease</span>
+        <span class="c1"># 2. Rerank</span>
+        <span class="c1"># 3. Build diagnosis prompt</span>
+        <span class="c1"># 4. Call LLM</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;disease&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;explanation&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Transient Error Handling / معالجة الأخطاء المؤقتة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">TRANSIENT_ERROR_PATTERNS</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;compaction worker&quot;</span><span class="p">,</span> <span class="s2">&quot;empty response&quot;</span><span class="p">,</span> <span class="s2">&quot;rate limit&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;timeout&quot;</span><span class="p">,</span> <span class="s2">&quot;service unavailable&quot;</span><span class="p">,</span> <span class="s2">&quot;internal server error&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;bad gateway&quot;</span><span class="p">,</span> <span class="s2">&quot;gateway timeout&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="c1"># Retry up to 3 times with exponential backoff (1s, 2s, 4s)</span>
+</code></pre></div>
+
+<h4 id="appragnormalizerpy-text-normalization"><code>app/rag/normalizer.py</code> — Text Normalization / تطبيع النص</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Normalizes Arabic text and query terms by mapping variant spellings to canonical forms.</p>
+<div class="highlight"><pre><span></span><code><span class="n">_VARIANT_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;نيوكاسيل&quot;</span><span class="p">:</span> <span class="s2">&quot;نيوكاسل&quot;</span><span class="p">,</span>    <span class="c1"># Variant → canonical</span>
+    <span class="s2">&quot;النيوكاسيل&quot;</span><span class="p">:</span> <span class="s2">&quot;النيوكاسل&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;اتش بي&quot;</span><span class="p">:</span> <span class="s2">&quot;ايب&quot;</span><span class="p">,</span>          <span class="c1"># H.P. → IB</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="33-vision-module">3.3 Vision Module / وحدة الرؤية</h3>
+<h4 id="appvisionpreprocessingpy-image-preprocessing"><code>app/vision/preprocessing.py</code> — Image Preprocessing / معالجة الصور</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Prepares uploaded images for the classifier: loading, resizing, normalization.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_image</span><span class="p">(</span><span class="n">file_bytes</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">:</span>
+    <span class="c1"># Load from bytes, convert to RGB</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess_image</span><span class="p">(</span><span class="n">image</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="c1"># Resize to 224×224, normalize to [0, 1], add batch dimension</span>
+    <span class="c1"># Returns shape: (1, 224, 224, 3)</span>
+</code></pre></div>
+
+<h4 id="appvisionclassifierpy-disease-classifier"><code>app/vision/classifier.py</code> — Disease Classifier / مصنف الأمراض</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Loads the trained TensorFlow/Keras model and exposes a <code>predict()</code> interface. Uses lazy singleton pattern (loads model only once).</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PoultryClassifier</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_path</span><span class="o">=</span><span class="s2">&quot;./models/poultry_classifier.keras&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">class_names</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;Coccidiosis&quot;</span><span class="p">,</span> <span class="s2">&quot;Healthy&quot;</span><span class="p">,</span> <span class="s2">&quot;New Castle Disease&quot;</span><span class="p">,</span> <span class="s2">&quot;Salmonella&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">preprocessed_image</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+        <span class="c1"># Returns probability for each class</span>
+</code></pre></div>
+
+<p><strong>4 Disease Classes / 4 فئات أمراض:</strong><br />
+| Index | Class | Arabic |<br />
+|-------|-------|--------|<br />
+| 0 | Coccidiosis | الكوكسيديا |<br />
+| 1 | Healthy | صحي |<br />
+| 2 | New Castle Disease | مرض نيوكاسل |<br />
+| 3 | Salmonella | السلمونيلا |</p>
+<h4 id="appvisionpredictorpy-predictor"><code>app/vision/predictor.py</code> — Predictor / المتنبئ</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+End-to-end prediction: raw image bytes → preprocessing → classifier → clean result.</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiagnosisPrediction</span><span class="p">:</span>
+    <span class="n">disease</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">all_probabilities</span><span class="p">:</span> <span class="nb">dict</span>  <span class="c1"># {class_name: probability}</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Predictor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_bytes</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagnosisPrediction</span><span class="p">:</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">load_image</span><span class="p">(</span><span class="n">file_bytes</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">preprocess_image</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">array</span><span class="p">)</span>
+        <span class="n">best_idx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">probs</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">DiagnosisPrediction</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="appvisionexplainerpy-diagnosis-explainer"><code>app/vision/explainer.py</code> — Diagnosis Explainer / شارح التشخيص</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Bridges the vision pipeline's disease prediction into the RAG pipeline to produce a full, grounded explanation in Egyptian Arabic.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">DiagnosisExplainer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">diagnose_and_explain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_bytes</span><span class="p">:</span> <span class="nb">bytes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># 1. Predict disease from image</span>
+        <span class="c1"># 2. If confidence &lt; 40%, return warning</span>
+        <span class="c1"># 3. Use RAG to explain the disease</span>
+        <span class="c1"># 4. Format in Arabic with structured sections</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;disease&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+            <span class="s2">&quot;confidence&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+            <span class="s2">&quot;explanation&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>  <span class="c1"># Arabic formatted text</span>
+            <span class="s2">&quot;sources&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+            <span class="s2">&quot;all_probabilities&quot;</span><span class="p">:</span> <span class="o">...</span>
+        <span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Arabic Disease Name Mapping / أسماء الأمراض بالعربية:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">DISEASE_NAME_AR</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Coccidiosis&quot;</span><span class="p">:</span> <span class="s2">&quot;الكوكسيديا&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Healthy&quot;</span><span class="p">:</span> <span class="s2">&quot;صحي&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;New Castle Disease&quot;</span><span class="p">:</span> <span class="s2">&quot;مرض نيوكاسل&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Salmonella&quot;</span><span class="p">:</span> <span class="s2">&quot;السلمونيلا&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="34-api-module-api">3.4 API Module / وحدة API</h3>
+<h4 id="appapichatpy-chat-endpoint"><code>app/api/chat.py</code> — Chat Endpoint / نقطة نهاية المحادثة</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">ChatResponse</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ask_question</span><span class="p">(</span><span class="n">payload</span><span class="p">:</span> <span class="n">ChatRequest</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ChatResponse</span><span class="p">:</span>
+    <span class="c1"># 1. Wait for pipeline warm-up (20s timeout)</span>
+    <span class="c1"># 2. Call pipeline.answer_question()</span>
+    <span class="c1"># 3. Log to database</span>
+    <span class="k">return</span> <span class="n">ChatResponse</span><span class="p">(</span><span class="n">answer</span><span class="o">=...</span><span class="p">,</span> <span class="n">sources</span><span class="o">=...</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="appapiimagepy-image-diagnosis-endpoint"><code>app/api/image.py</code> — Image Diagnosis Endpoint / نقطة نهاية تشخيص الصور</h4>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/diagnose&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">DiagnosisResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">diagnose_image</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DiagnosisResponse</span><span class="p">:</span>
+    <span class="c1"># 1. Validate file type (must be image/*)</span>
+    <span class="c1"># 2. Read file bytes</span>
+    <span class="c1"># 3. Call explainer.diagnose_and_explain()</span>
+    <span class="c1"># 4. Log to database</span>
+    <span class="k">return</span> <span class="n">DiagnosisResponse</span><span class="p">(</span><span class="n">disease</span><span class="o">=...</span><span class="p">,</span> <span class="n">confidence</span><span class="o">=...</span><span class="p">,</span> <span class="n">explanation</span><span class="o">=...</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</code></pre></div>
+
+<h4 id="appapiuploadpy-pdf-upload-endpoint-pdf"><code>app/api/upload.py</code> — PDF Upload Endpoint / نقطة نهاية رفع PDF</h4>
+<p><strong>Status: NOT YET IMPLEMENTED / لم يتم التنفيذ بعد</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/pdf&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">UploadResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upload_pdf</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">UploadResponse</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>  <span class="c1"># TODO</span>
+</code></pre></div>
+
+<hr />
+<h3 id="35-database-module">3.5 Database Module / وحدة قاعدة البيانات</h3>
+<h4 id="appdatabasehistorypy-chat-diagnosis-history"><code>app/database/history.py</code> — Chat &amp; Diagnosis History / تاريخ المحادثات والتشخيصات</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Lightweight SQLite persistence for chat and diagnosis history.</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Tables:</span>
+<span class="c1"># - chat_history (id, question, answer, created_at)</span>
+<span class="c1"># - diagnosis_history (id, disease, confidence, explanation, created_at)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">init_db</span><span class="p">():</span>        <span class="c1"># Create tables if not exist</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_chat</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>   <span class="c1"># Insert chat record</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_diagnosis</span><span class="p">(</span><span class="n">disease</span><span class="p">,</span> <span class="n">confidence</span><span class="p">,</span> <span class="n">explanation</span><span class="p">):</span>  <span class="c1"># Insert diagnosis record</span>
+</code></pre></div>
+
+<hr />
+<h3 id="36-services-module">3.6 Services Module / وحدة الخدمات</h3>
+<h4 id="appservicesknowledge_base_servicepy-kb-ingestion"><code>app/services/knowledge_base_service.py</code> — KB Ingestion / إدخال قاعدة المعرفة</h4>
+<p><strong>What it does / ماذا يفعل:</strong><br />
+Orchestrates the ingestion flow: load document → clean text → chunk → add to vector store.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">KnowledgeBaseService</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">ingest_document</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">raw_doc</span> <span class="o">=</span> <span class="n">load_document</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">cleaned</span> <span class="o">=</span> <span class="n">clean_text</span><span class="p">(</span><span class="n">raw_doc</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">chunks</span> <span class="o">=</span> <span class="n">chunk_text</span><span class="p">(</span><span class="n">cleaned</span><span class="p">,</span> <span class="n">raw_doc</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vector_store</span><span class="o">.</span><span class="n">add_chunks</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunks</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">ingest_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="o">=</span><span class="s2">&quot;data/pdfs&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1"># Process all PDFs/DOCXs in directory</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;files_processed&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;chunks_indexed&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;errors&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="37-frontend-module">3.7 Frontend Module / وحدة الواجهة الأمامية</h3>
+<h4 id="appstreamlit_apppy-main-entry-point"><code>app/streamlit_app.py</code> — Main Entry Point / نقطة الدخول الرئيسية</h4>
+<p>Routes to different pages based on sidebar selection:<br />
+- Dashboard → <code>render_dashboard()</code><br />
+- AI Assistant → <code>render_assistant()</code><br />
+- Image Analysis → <code>render_image_analysis()</code><br />
+- Disease Library → <code>render_disease_library()</code><br />
+- Farm Health / Alerts / Settings → Stubs ("coming soon")</p>
+<h4 id="appcomponentssidebarpy-sidebar-component"><code>app/components/sidebar.py</code> — Sidebar Component / مكون الشريط الجانبي</h4>
+<p>Custom-styled sidebar with:<br />
+- Brand header ("🐔 PoultryCare AI")<br />
+- Navigation buttons with active state<br />
+- System status indicators<br />
+- Dark theme with gradient background</p>
+<h4 id="appcomponentschatpy-chat-components"><code>app/components/chat.py</code> — Chat Components / مكونات المحادثة</h4>
+<ul>
+<li><code>render_chat_message()</code> — Single chat message</li>
+<li><code>render_answer_card()</code> — Professional answer card with sources and feedback</li>
+<li><code>render_suggested_questions()</code> — Clickable question chips</li>
+</ul>
+<h4 id="apppagesassistantpy-ai-assistant-page"><code>app/pages/assistant.py</code> — AI Assistant Page / صفحة المساعد الذكي</h4>
+<ul>
+<li>Chat interface with suggested questions</li>
+<li>Calls <code>/chat/</code> API endpoint</li>
+<li>Maintains session-based chat history</li>
+<li>Handles quick access queries from dashboard</li>
+</ul>
+<h4 id="apppagesimage_analysispy-image-analysis-page"><code>app/pages/image_analysis.py</code> — Image Analysis Page / صفحة تحليل الصور</h4>
+<ul>
+<li>File upload (JPG/PNG, up to 10MB)</li>
+<li>Calls <code>/image/diagnose</code> API endpoint</li>
+<li>Shows prediction, confidence, explanation, all probabilities</li>
+<li>Links to Disease Library and AI Assistant</li>
+</ul>
+<hr />
+<h2 id="4-rag-pipeline-deep-dive-rag">4. RAG Pipeline Deep Dive / تحليل معمارية RAG</h2>
+<h3 id="41-document-ingestion-flow">4.1 Document Ingestion Flow / تدفق إدخال المستندات</h3>
+<div class="highlight"><pre><span></span><code>PDF/DOCX File
+     │
+     ▼
+┌──────────────┐
+│   Loader     │  ← pypdf or OCR (PyMuPDF + Tesseract)
+│  (loader.py) │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ Preprocessor │  ← Clean noise, normalize Unicode
+│(preprocessing│
+│    .py)      │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│   Chunker    │  ← Sentence-aware splitting with overlap
+│ (chunking.py)│
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│  Embedder    │  ← sentence-transformers (384-dim)
+│(embeddings.py│
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ Vector Store │  ← JSON file with cosine similarity
+│(vector_store │
+│    .py)      │
+└──────────────┘
+</code></pre></div>
+
+<h3 id="42-query-flow">4.2 Query Flow / تدفق الاستعلام</h3>
+<div class="highlight"><pre><span></span><code>User Question
+     │
+     ▼
+┌──────────────┐
+│  Embedder    │  ← Same model as ingestion
+│ (embed_query)│
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│ Vector Store │  ← Cosine similarity search
+│ (similarity  │     Returns top_k=5 candidates
+│  _search)    │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│   Reranker   │  ← Cross-encoder re-scoring
+│ (reranker.py)│     Returns top_k=3 final chunks
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│Prompt Builder│  ← System prompt + context + history
+│(prompt_builder│
+│    .py)      │
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│   LLM Call   │  ← OpenRouter API (GPT-4o-mini)
+│ (pipeline.py)│     With retry + fallback
+└──────┬───────┘
+       │
+       ▼
+┌──────────────┐
+│   Section    │  ← Extract relevant section based on
+│   Extract    │     question keywords
+│ (pipeline.py)│
+└──────┬───────┘
+       │
+       ▼
+  Arabic Answer
+</code></pre></div>
+
+<h3 id="43-chunking-strategy">4.3 Chunking Strategy / استراتيجية التقسيم</h3>
+<p><strong>Sentence-Aware Splitting (Primary):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Split by sentence boundaries (. ? !)</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;(?&lt;=[.?!])\s+&quot;</span><span class="p">,</span> <span class="n">cleaned_text</span><span class="p">)</span>
+<span class="c1"># Group sentences until chunk_size is reached</span>
+<span class="c1"># No overlap at sentence level (natural boundaries)</span>
+</code></pre></div>
+
+<p><strong>Word-Based Splitting (Fallback):</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Split by words</span>
+<span class="n">words</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\S+&quot;</span><span class="p">,</span> <span class="n">cleaned_text</span><span class="p">)</span>
+<span class="c1"># Slide window: target_words = chunk_size // 8</span>
+<span class="c1"># Overlap: overlap_words = chunk_overlap // 8</span>
+</code></pre></div>
+
+<p><strong>Why sentence-aware? / لماذا التقسيم حسب الجمل؟</strong><br />
+- Preserves semantic完整性<br />
+- Avoids cutting mid-sentence<br />
+- Better for LLM context consumption</p>
+<h3 id="44-embedding-model-choice">4.4 Embedding Model Choice / اختيار نموذج التضمين</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dimensions</th>
+<th>Languages</th>
+<th>Size</th>
+<th>Speed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>paraphrase-multilingual-MiniLM-L12-v2</td>
+<td>384</td>
+<td>50+</td>
+<td>~120MB</td>
+<td>Fast</td>
+</tr>
+<tr>
+<td>all-MiniLM-L6-v2</td>
+<td>382</td>
+<td>English only</td>
+<td>~80MB</td>
+<td>Faster</td>
+</tr>
+<tr>
+<td>multilingual-e5-large</td>
+<td>1024</td>
+<td>100+</td>
+<td>~1.1GB</td>
+<td>Slow</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Chosen: paraphrase-multilingual-MiniLM-L12-v2</strong> — Best balance of multilingual support (including Arabic), size, and quality.</p>
+<h3 id="45-reranking-strategy">4.5 Reranking Strategy / استراتيجية إعادة الترتيب</h3>
+<p><strong>Why rerank? / لماذا إعادة الترتيب؟</strong><br />
+- Initial retrieval (bi-encoder) is fast but less accurate<br />
+- Reranking (cross-encoder) is slower but more accurate<br />
+- We rerank only top-k candidates (not all documents) → acceptable latency</p>
+<p><strong>Model: cross-encoder/ms-marco-MiniLM-L-6-v2</strong><br />
+- Trained on MS MARCO dataset<br />
+- 6-layer cross-encoder<br />
+- Good balance of speed and accuracy</p>
+<hr />
+<h2 id="5-vision-pipeline-deep-dive">5. Vision Pipeline Deep Dive / تحليل معمارية الرؤية</h2>
+<h3 id="51-model-architecture">5.1 Model Architecture / بنية النموذج</h3>
+<div class="highlight"><pre><span></span><code>Input: RGB Image (224 × 224 × 3)
+     │
+     ▼
+┌──────────────────┐
+│  Preprocessing   │  ← Resize + Normalize [0,1]
+│  (1, 224, 224, 3)│
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Keras Model     │  ← Loaded from .keras file
+│  (TensorFlow)    │
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  Softmax Output  │  ← 4 probabilities (sum = 1)
+│  [p0, p1, p2, p3]│
+└────────┬─────────┘
+         │
+         ▼
+┌──────────────────┐
+│  argmax(p)       │  ← Highest probability = predicted class
+└──────────────────┘
+</code></pre></div>
+
+<h3 id="52-disease-classes">5.2 Disease Classes / فئات الأمراض</h3>
+<table>
+<thead>
+<tr>
+<th>Index</th>
+<th>Disease</th>
+<th>Arabic</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Coccidiosis</td>
+<td>الكوكسيديا</td>
+<td>Parasitic disease affecting intestines</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Healthy</td>
+<td>صحي</td>
+<td>No disease detected</td>
+</tr>
+<tr>
+<td>2</td>
+<td>New Castle Disease</td>
+<td>مرض نيوكاسل</td>
+<td>Viral respiratory disease</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Salmonella</td>
+<td>السلمونيلا</td>
+<td>Bacterial infection</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-confidence-threshold">5.3 Confidence Threshold / عتبة الثقة</h3>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="n">confidence</span> <span class="o">&lt;</span> <span class="mf">0.4</span><span class="p">:</span>  <span class="c1"># 40%</span>
+    <span class="c1"># Return warning message instead of full diagnosis</span>
+    <span class="n">explanation</span> <span class="o">=</span> <span class="s2">&quot;تنبيه: ثقة النموذج منخفضة. النتيجة قد لا تكون دقيقة.&quot;</span>
+</code></pre></div>
+
+<p><strong>Why 40%? / لماذا 40%؟</strong><br />
+- Below 40%, the model is essentially guessing<br />
+- Prevents misleading farmers with low-confidence diagnoses<br />
+- Still returns the prediction for reference</p>
+<hr />
+<h2 id="6-database-design">6. Database Design / تصميم قاعدة البيانات</h2>
+<h3 id="61-schema">6.1 Schema / المخطط</h3>
+<div class="highlight"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">chat_history</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">question</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">answer</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span><span class="c1">-- ISO 8601 format (UTC)</span>
+<span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">diagnosis_history</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">disease</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">confidence</span><span class="w"> </span><span class="nb">REAL</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">explanation</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">created_at</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w">  </span><span class="c1">-- ISO 8601 format (UTC)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<h3 id="62-design-decisions">6.2 Design Decisions / قرارات التصميم</h3>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SQLite</td>
+<td>Simple, no server needed, sufficient for single-user</td>
+</tr>
+<tr>
+<td>UTC timestamps</td>
+<td>Avoids timezone confusion</td>
+</tr>
+<tr>
+<td>TEXT for created_at</td>
+<td>ISO 8601 is sortable and human-readable</td>
+</tr>
+<tr>
+<td>Separate tables</td>
+<td>Chat and diagnosis are different entities</td>
+</tr>
+<tr>
+<td>No foreign keys</td>
+<td>Simplifies schema, history is append-only</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="7-api-design">7. API Design / تصميم واجهة البرمجة</h2>
+<h3 id="71-endpoints">7.1 Endpoints / نقاط النهاية</h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Request</th>
+<th>Response</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/chat/</code></td>
+<td><code>{question, session_id?}</code></td>
+<td><code>{answer, sources}</code></td>
+<td>✅ Implemented</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/image/diagnose</code></td>
+<td><code>file: UploadFile</code></td>
+<td><code>{disease, confidence, explanation, sources, all_probabilities}</code></td>
+<td>✅ Implemented</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/upload/pdf</code></td>
+<td><code>file: UploadFile</code></td>
+<td><code>{filename, chunks_indexed}</code></td>
+<td>❌ Not implemented</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/health</code></td>
+<td>—</td>
+<td><code>{status: "ok"}</code></td>
+<td>✅ Implemented</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/</code></td>
+<td>—</td>
+<td>Redirect to <code>/docs</code></td>
+<td>✅ Implemented</td>
+</tr>
+</tbody>
+</table>
+<h3 id="72-requestresponse-models">7.2 Request/Response Models / نماذج الطلب والاستجابة</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Chat</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ChatRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ChatResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">answer</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+
+<span class="c1"># Image Diagnosis</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DiagnosisResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">disease</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">explanation</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">sources</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span>
+    <span class="n">all_probabilities</span><span class="p">:</span> <span class="nb">dict</span>
+</code></pre></div>
+
+<hr />
+<h2 id="8-frontend-streamlit">8. Frontend (Streamlit) / الواجهة الأمامية</h2>
+<h3 id="81-pages">8.1 Pages / الصفحات</h3>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dashboard</td>
+<td><code>pages/dashboard.py</code></td>
+<td>Hero section, quick access, features</td>
+</tr>
+<tr>
+<td>AI Assistant</td>
+<td><code>pages/assistant.py</code></td>
+<td>Chat interface with suggested questions</td>
+</tr>
+<tr>
+<td>Image Analysis</td>
+<td><code>pages/image_analysis.py</code></td>
+<td>Upload + diagnosis results</td>
+</tr>
+<tr>
+<td>Disease Library</td>
+<td><code>pages/disease_library.py</code></td>
+<td>Browsable disease categories</td>
+</tr>
+<tr>
+<td>Farm Health</td>
+<td>—</td>
+<td>Stub ("coming soon")</td>
+</tr>
+<tr>
+<td>Alerts</td>
+<td>—</td>
+<td>Stub ("coming soon")</td>
+</tr>
+<tr>
+<td>Settings</td>
+<td>—</td>
+<td>Stub ("coming soon")</td>
+</tr>
+<tr>
+<td>About</td>
+<td>—</td>
+<td>Project description</td>
+</tr>
+</tbody>
+</table>
+<h3 id="82-communication-pattern">8.2 Communication Pattern / نمط الاتصال</h3>
+<div class="highlight"><pre><span></span><code>Streamlit Frontend (port 8501)
+        │
+        │ HTTP POST (requests library)
+        ▼
+FastAPI Backend (port 8001)
+        │
+        │ Returns JSON
+        ▼
+Streamlit renders response
+</code></pre></div>
+
+<p><strong>Why separate processes? / لماذا عمليات منفصلة؟</strong><br />
+- Streamlit and FastAPI have different runtime models<br />
+- Allows independent scaling<br />
+- Cleaner separation of concerns<br />
+- Can replace frontend without touching backend</p>
+<hr />
+<h2 id="9-important-comparisons">9. Important Comparisons / مقارنات مهمة</h2>
+<h3 id="91-vector-store-json-vs-chromadb-vs-faiss">9.1 Vector Store: JSON vs ChromaDB vs FAISS</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>JSON (Used)</th>
+<th>ChromaDB</th>
+<th>FAISS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Setup</td>
+<td>None</td>
+<td>Server/Embedded</td>
+<td>Library</td>
+</tr>
+<tr>
+<td>Dependencies</td>
+<td>None</td>
+<td>chromadb</td>
+<td>faiss-cpu</td>
+</tr>
+<tr>
+<td>Persistence</td>
+<td>File-based</td>
+<td>File/Server</td>
+<td>File</td>
+</tr>
+<tr>
+<td>Scalability</td>
+<td>Small (&lt;10K chunks)</td>
+<td>Medium</td>
+<td>Large</td>
+</tr>
+<tr>
+<td>Similarity</td>
+<td>Cosine (manual)</td>
+<td>Built-in</td>
+<td>Built-in</td>
+</tr>
+<tr>
+<td>Debugging</td>
+<td>Easy (read JSON)</td>
+<td>Harder</td>
+<td>Harder</td>
+</tr>
+<tr>
+<td>Best For</td>
+<td>Prototyping</td>
+<td>Production</td>
+<td>Large-scale</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why JSON was chosen / لماذا تم اختيار JSON:</strong><br />
+- Simple deployment, no additional dependencies<br />
+- Easy to inspect and debug<br />
+- Sufficient for the project's knowledge base size</p>
+<h3 id="92-embedding-models-comparison">9.2 Embedding Models Comparison / مقارنة نماذج التضمين</h3>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Dims</th>
+<th>Arabic</th>
+<th>Size</th>
+<th>Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>paraphrase-multilingual-MiniLM-L12-v2 ✅</td>
+<td>384</td>
+<td>✅</td>
+<td>120MB</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>all-MiniLM-L6-v2</td>
+<td>382</td>
+<td>❌</td>
+<td>80MB</td>
+<td>Good (EN)</td>
+</tr>
+<tr>
+<td>multilingual-e5-large</td>
+<td>1024</td>
+<td>✅</td>
+<td>1.1GB</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>text-embedding-ada-002</td>
+<td>1536</td>
+<td>✅</td>
+<td>API</td>
+<td>Best</td>
+</tr>
+</tbody>
+</table>
+<h3 id="93-llm-providers-comparison">9.3 LLM Providers Comparison / مقارنة مزودي النماذج اللغوية</h3>
+<table>
+<thead>
+<tr>
+<th>Provider</th>
+<th>Model</th>
+<th>Cost</th>
+<th>Latency</th>
+<th>Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenRouter ✅</td>
+<td>GPT-4o-mini</td>
+<td>Low</td>
+<td>Fast</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>OpenAI Direct</td>
+<td>GPT-4o</td>
+<td>Medium</td>
+<td>Medium</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>Google</td>
+<td>Gemini Pro</td>
+<td>Low</td>
+<td>Fast</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>Local (Ollama)</td>
+<td>Llama 3</td>
+<td>Free</td>
+<td>Slow</td>
+<td>Medium</td>
+</tr>
+</tbody>
+</table>
+<h3 id="94-reranking-approaches">9.4 Reranking Approaches / مقارنة طرق إعادة الترتيب</h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Speed</th>
+<th>Quality</th>
+<th>Used?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No reranking</td>
+<td>Fastest</td>
+<td>Lowest</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>BM25 (lexical)</td>
+<td>Fast</td>
+<td>Medium</td>
+<td>❌</td>
+</tr>
+<tr>
+<td>Cross-encoder ✅</td>
+<td>Slow</td>
+<td>Highest</td>
+<td>✅</td>
+</tr>
+<tr>
+<td>ColBERT</td>
+<td>Medium</td>
+<td>High</td>
+<td>❌</td>
+</tr>
+</tbody>
+</table>
+<h3 id="95-ocr-approaches">9.5 OCR Approaches / مقارنة طرق التعرف الضوئي</h3>
+<table>
+<thead>
+<tr>
+<th>Approach</th>
+<th>Arabic</th>
+<th>Speed</th>
+<th>Quality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tesseract ✅</td>
+<td>✅</td>
+<td>Medium</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>EasyOCR</td>
+<td>✅</td>
+<td>Slow</td>
+<td>Good</td>
+</tr>
+<tr>
+<td>PaddleOCR</td>
+<td>✅</td>
+<td>Fast</td>
+<td>Best</td>
+</tr>
+<tr>
+<td>Google Vision API</td>
+<td>✅</td>
+<td>Fast</td>
+<td>Best (paid)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-identified-bugs-fixes">10. Identified Bugs &amp; Fixes / الأخطاء المكتشفة والحلول</h2>
+<h3 id="bug-1-env-file-contains-real-api-key-env-api">Bug 1: <code>.env</code> File Contains Real API Key / ملف <code>.env</code> يحتوي على مفتاح API حقيقي</h3>
+<p><strong>File:</strong> <code>.env</code> (line 1)</p>
+<p><strong>Problem / المشكلة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">OPENROUTER_API_KEY</span><span class="o">=</span><span class="n">sk</span><span class="o">-</span><span class="ow">or</span><span class="o">-</span><span class="n">v1</span><span class="o">-</span><span class="mf">8619e34</span><span class="n">fd548ef3beccac1b95898e499cffc7fd0f421a8e0891a390d3cedda11</span>
+</code></pre></div>
+
+<p>A real API key is hardcoded in the <code>.env</code> file, which is a security risk if the repository is shared.</p>
+<p>مفتاح API حقيقي موجود في ملف <code>.env</code>، وهو خطر أمني إذا تم مشاركة المستودع.</p>
+<p><strong>Fix / الحل:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">OPENROUTER_API_KEY</span><span class="o">=</span><span class="n">your_openrouter_api_key_here</span>
+</code></pre></div>
+
+<p>Replace with placeholder. Add <code>.env</code> to <code>.gitignore</code>.</p>
+<hr />
+<h3 id="bug-2-uploadpy-not-implemented-uploadpy">Bug 2: <code>upload.py</code> Not Implemented / <code>upload.py</code> غير منفذ</h3>
+<p><strong>File:</strong> <code>app/api/upload.py</code> (line 35)</p>
+<p><strong>Problem / المشكلة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/pdf&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">UploadResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upload_pdf</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">...</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">UploadResponse</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</code></pre></div>
+
+<p>The PDF upload endpoint raises <code>NotImplementedError</code>, which returns a 500 error to the client.</p>
+<p><strong>Fix / الحل:</strong><br />
+Implement the endpoint using <code>KnowledgeBaseService</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/pdf&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">UploadResponse</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">upload_pdf</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">...</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">UploadResponse</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">file</span><span class="o">.</span><span class="n">content_type</span> <span class="o">!=</span> <span class="s2">&quot;application/pdf&quot;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">HTTPException</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="s2">&quot;Only PDF files are accepted.&quot;</span><span class="p">)</span>
+    <span class="n">saved_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/pdfs&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span>
+    <span class="n">ensure_dir</span><span class="p">(</span><span class="n">saved_path</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span>
+    <span class="n">saved_path</span><span class="o">.</span><span class="n">write_bytes</span><span class="p">(</span><span class="k">await</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">service</span> <span class="o">=</span> <span class="n">KnowledgeBaseService</span><span class="p">()</span>
+    <span class="n">chunks</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">ingest_document</span><span class="p">(</span><span class="n">saved_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">UploadResponse</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span> <span class="n">chunks_indexed</span><span class="o">=</span><span class="n">chunks</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="bug-3-_extract_relevant_section-may-return-too-little-text">Bug 3: <code>_extract_relevant_section</code> May Return Too Little Text / قد يُرجع النص قليلاً جداً</h3>
+<p><strong>File:</strong> <code>app/rag/pipeline.py</code> (line 64)</p>
+<p><strong>Problem / المشكلة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">section_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">section_content</span>  <span class="c1"># Returns very short content</span>
+</code></pre></div>
+
+<p>If a section has less than 50 characters, it's returned as-is, which may be too short to be useful.</p>
+<p><strong>Fix / الحل:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">section_content</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">50</span><span class="p">:</span>
+    <span class="c1"># Return full text instead of truncated section</span>
+    <span class="k">return</span> <span class="n">text</span>
+</code></pre></div>
+
+<hr />
+<h3 id="bug-4-no-input-validation-on-chat-request">Bug 4: No Input Validation on Chat Request / لا يوجد تحقق من المدخلات</h3>
+<p><strong>File:</strong> <code>app/api/chat.py</code></p>
+<p><strong>Problem / المشكلة:</strong><br />
+The <code>ChatRequest</code> model accepts any string, including empty strings, which could cause issues downstream.</p>
+<p><strong>Fix / الحل:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ChatRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">question</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">session_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@validator</span><span class="p">(</span><span class="s1">&#39;question&#39;</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">question_must_not_be_empty</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Question cannot be empty&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</code></pre></div>
+
+<hr />
+<h3 id="bug-5-thread-safety-issue-in-pipeline-warm-up">Bug 5: Thread Safety Issue in Pipeline Warm-up / مشكلة أمان الخيوط في التسخين</h3>
+<p><strong>File:</strong> <code>app/main.py</code> (line 22-37)</p>
+<p><strong>Problem / المشكلة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">warm_up_rag</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">RAGPipeline</span><span class="p">()</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">answer_question</span><span class="p">(</span><span class="s2">&quot;test warm up query&quot;</span><span class="p">,</span> <span class="n">session_id</span><span class="o">=</span><span class="s2">&quot;warmup_session&quot;</span><span class="p">)</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span>  <span class="c1"># Race condition possible</span>
+</code></pre></div>
+
+<p>The <code>state.pipeline</code> assignment could race with requests that check <code>state.pipeline_ready</code>.</p>
+<p><strong>Current Mitigation / الحل الحالي:</strong><br />
+Uses <code>threading.Event</code> (<code>pipeline_ready</code>) to synchronize. The <code>get_pipeline()</code> function in <code>chat.py</code> waits for the event before accessing the pipeline. This is sufficient for the current use case.</p>
+<hr />
+<h3 id="bug-6-conversation-memory-not-persisted">Bug 6: Conversation Memory Not Persisted / ذاكرة المحادثة غير محفوظة</h3>
+<p><strong>File:</strong> <code>app/rag/pipeline.py</code></p>
+<p><strong>Problem / المشكلة:</strong><br />
+<code>ConversationMemory</code> stores history in-memory only. If the server restarts, all conversation history is lost.</p>
+<p><strong>Impact / التأثير:</strong><br />
+- Low — conversations are short-lived anyway<br />
+- Database logs persist separately</p>
+<p><strong>Potential Fix / حل محتمل:</strong><br />
+Store conversation turns in SQLite alongside the existing <code>chat_history</code> table, keyed by <code>session_id</code>.</p>
+<hr />
+<h3 id="bug-7-_clean_extracted_page_text-duplicate-logic">Bug 7: <code>_clean_extracted_page_text</code> Duplicate Logic / منطق مكرر</h3>
+<p><strong>File:</strong> <code>app/rag/loader.py</code> (line 45-67) vs <code>app/rag/preprocessing.py</code></p>
+<p><strong>Problem / المشكلة:</strong><br />
+The <code>_clean_extracted_page_text</code> function in <code>loader.py</code> duplicates some cleaning logic that already exists in <code>preprocessing.py</code> (e.g., <code>remove_boilerplate</code>, duplicate sentence removal).</p>
+<p><strong>Fix / الحل:</strong><br />
+Refactor to use <code>preprocessing.clean_text()</code> directly, or extract shared logic into a common utility.</p>
+<hr />
+<h3 id="bug-8-hardcoded-api-url-in-frontend-api">Bug 8: Hardcoded API URL in Frontend / رابط API ثابت في الواجهة</h3>
+<p><strong>File:</strong> <code>app/pages/assistant.py</code> (line 13)</p>
+<p><strong>Problem / المشكلة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">API_BASE_URL</span> <span class="o">=</span> <span class="s2">&quot;http://localhost:8001&quot;</span>
+</code></pre></div>
+
+<p>Hardcoded URL won't work in production or different environments.</p>
+<p><strong>Fix / الحل:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">API_BASE_URL</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;API_BASE_URL&quot;</span><span class="p">,</span> <span class="s2">&quot;http://localhost:8001&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h3 id="bug-9-no-rate-limiting-on-api-endpoints">Bug 9: No Rate Limiting on API Endpoints / لا يوجد حد للطلبات</h3>
+<p><strong>File:</strong> <code>app/main.py</code></p>
+<p><strong>Problem / المشكلة:</strong><br />
+No rate limiting on any endpoint. A malicious client could overwhelm the server.</p>
+<p><strong>Fix / الحل:</strong><br />
+Add <code>slowapi</code> or similar rate limiting middleware:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">slowapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">Limiter</span>
+<span class="n">limiter</span> <span class="o">=</span> <span class="n">Limiter</span><span class="p">(</span><span class="n">key_func</span><span class="o">=</span><span class="n">get_remote_address</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">limiter</span> <span class="o">=</span> <span class="n">limiter</span>
+</code></pre></div>
+
+<hr />
+<h3 id="bug-10-translator-class-not-used-translator">Bug 10: <code>Translator</code> Class Not Used / فئة <code>Translator</code> غير مستخدمة</h3>
+<p><strong>File:</strong> <code>app/core/utils.py</code> (line 54-79)</p>
+<p><strong>Problem / المشكلة:</strong><br />
+The <code>Translator</code> class is defined but never imported or used anywhere in the codebase.</p>
+<p><strong>Fix / الحل:</strong><br />
+Either use it in the pipeline for English-to-Arabic translation, or remove it to reduce dead code.</p>
+<hr />
+<h2 id="11-25-professor-questions-answers-25">11. 25 Professor Questions &amp; Answers / 25 سؤال من المُحاضر مع الإجابات</h2>
+<h3 id="q1-what-is-rag-and-why-did-you-use-it-rag">Q1: What is RAG and why did you use it? / ما هو RAG ولماذا استخدمته؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+RAG (Retrieval-Augmented Generation) is a technique that combines information retrieval with language generation. Instead of relying solely on the LLM's training data, we first retrieve relevant documents from a knowledge base, then provide them as context to the LLM.</p>
+<p>We used RAG because:<br />
+1. <strong>Domain-specific knowledge</strong> — Poultry disease information isn't well-covered in general LLM training data<br />
+2. <strong>Updatable</strong> — We can add new documents without retraining the model<br />
+3. <strong>Grounded answers</strong> — Responses are based on actual veterinary documents, reducing hallucination<br />
+4. <strong>Source attribution</strong> — We can show users which documents informed the answer</p>
+<p>RAG (الاسترجاع المعزز بالتوليد) هو تقنية تجمع بين استرجاع المعلومات وتوليد اللغة. بدلاً من الاعتماد فقط على بيانات تدريب النموذج اللغوي، نسترجع أولاً المستندات ذات الصلة من قاعدة المعرفة، ثم نقدمها كسياق للنموذج اللغوي.</p>
+<hr />
+<h3 id="q2-explain-the-difference-between-bi-encoder-and-cross-encoder">Q2: Explain the difference between bi-encoder and cross-encoder. / اشرح الفرق بين المرمز الثنائي والمرمز المتقاطع</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+| Aspect | Bi-Encoder | Cross-Encoder |<br />
+|--------|-----------|---------------|<br />
+| Input | Query and document separately | Query and document together |<br />
+| Speed | Fast (can pre-compute) | Slow (must compute per pair) |<br />
+| Quality | Lower (independent encoding) | Higher (joint attention) |<br />
+| Use Case | Initial retrieval (top-k from millions) | Reranking (top-k from dozens) |</p>
+<p>In our system:<br />
+- <strong>Bi-encoder</strong> (<code>sentence-transformers</code>): Used in <code>EmbeddingModel</code> for initial retrieval from the vector store<br />
+- <strong>Cross-encoder</strong> (<code>CrossEncoder</code>): Used in <code>Reranker</code> to re-score the top candidates</p>
+<hr />
+<h3 id="q3-why-did-you-choose-json-over-chromadb-for-the-vector-store-json-chromadb">Q3: Why did you choose JSON over ChromaDB for the vector store? / لماذا اخترت JSON بدلاً من ChromaDB؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+1. <strong>Simplicity</strong> — No additional server or dependency needed<br />
+2. <strong>Debugging</strong> — Can inspect the JSON file directly<br />
+3. <strong>Sufficient scale</strong> — Our knowledge base is small (&lt; 1000 chunks)<br />
+4. <strong>Portability</strong> — Works anywhere Python runs<br />
+5. <strong>No configuration</strong> — No database setup required</p>
+<p>For production with larger knowledge bases, I would switch to ChromaDB or FAISS.</p>
+<hr />
+<h3 id="q4-how-does-the-ocr-fallback-work-ocr">Q4: How does the OCR fallback work? / كيف يعمل البديل OCR؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code>1. Try pypdf first (fast, clean text extraction)
+2. If extracted text &lt; 500 characters:
+   a. Open PDF with PyMuPDF (fitz)
+   b. Render each page as image (300 DPI)
+   c. Run Tesseract OCR (Arabic + English)
+   d. Clean extracted text
+   e. Use OCR text if longer than pypdf text
+</code></pre></div>
+
+<p>This handles scanned PDFs where pypdf can't extract text (no text layer).</p>
+<hr />
+<h3 id="q5-what-is-the-chunking-strategy-and-why">Q5: What is the chunking strategy and why? / ما هي استراتيجية التقسيم ولماذا؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+We use <strong>sentence-aware splitting</strong> as the primary strategy:<br />
+- Split text by sentence boundaries (<code>.</code>, <code>?</code>, <code>!</code>)<br />
+- Group sentences until <code>chunk_size</code> (450 chars ÷ 8 ≈ 56 words) is reached<br />
+- Natural boundaries preserve semantic完整性</p>
+<p>Fallback: <strong>word-based sliding window</strong> with overlap for texts without clear sentence boundaries.</p>
+<p><strong>Why sentence-aware?</strong><br />
+- Preserves complete thoughts<br />
+- Better for LLM context consumption<br />
+- Avoids mid-sentence cuts that lose meaning</p>
+<hr />
+<h3 id="q6-explain-the-conversation-memory-mechanism">Q6: Explain the conversation memory mechanism. / اشرح آلية ذاكرة المحادثة</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ConversationMemory</span><span class="p">:</span>
+    <span class="n">_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">]]</span>  <span class="c1"># session_id → list of {question, answer}</span>
+    <span class="n">_max_turns</span> <span class="o">=</span> <span class="mi">10</span>                  <span class="c1"># Keep last 10 turns per session</span>
+</code></pre></div>
+
+<ul>
+<li>Each session has a unique <code>session_id</code> (UUID)</li>
+<li>When answering, we include the last 6 turns as context</li>
+<li>This allows follow-up questions like "What about treatment?" to work</li>
+<li>History is in-memory only (lost on restart)</li>
+<li>Database stores a separate persistent log</li>
+</ul>
+<hr />
+<h3 id="q7-how-do-you-handle-llm-failures">Q7: How do you handle LLM failures? / كيف تتعامل مع فشل النموذج اللغوي؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+Three-layer strategy:</p>
+<ol>
+<li>
+<p><strong>Retry with backoff</strong> — Up to 3 retries for transient errors (rate limit, timeout, server errors)<br />
+<code>python
+   wait = 1.0 * (2 ** attempt)  # 1s, 2s, 4s</code></p>
+</li>
+<li>
+<p><strong>Error classification</strong> — Check if error message matches known transient patterns</p>
+</li>
+<li>
+<p><strong>Graceful fallback</strong> — If all retries fail, return raw retrieved context with a message:<br />
+<code>"الذكاء الاصطناعي غير متاح مؤقتاً. إليك المعلومات الأكثر صلة من قاعدة المعرفة"</code></p>
+</li>
+</ol>
+<hr />
+<h3 id="q8-what-is-the-confidence-threshold-for-image-diagnosis">Q8: What is the confidence threshold for image diagnosis? / ما هي عتبة الثقة لتشخيص الصور؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+<strong>40% (0.4)</strong></p>
+<p>If the classifier's confidence is below 40%:<br />
+- We return a warning message instead of a full diagnosis<br />
+- The warning says: "تنبيه: ثقة النموذج منخفضة. النتيجة قد لا تكون دقيقة."<br />
+- We still return the prediction for reference<br />
+- We recommend consulting a veterinarian</p>
+<p><strong>Why 40%?</strong><br />
+- With 4 classes, random chance is 25%<br />
+- 40% is above random but still uncertain<br />
+- Prevents misleading farmers with low-confidence diagnoses</p>
+<hr />
+<h3 id="q9-how-does-the-system-handle-arabic-text">Q9: How does the system handle Arabic text? / كيف يتعامل النظام مع النص العربي؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+Multiple layers:</p>
+<ol>
+<li><strong>Embedding model</strong> — <code>paraphrase-multilingual-MiniLM-L12-v2</code> supports Arabic natively</li>
+<li><strong>OCR</strong> — Tesseract configured with <code>lang="ara+eng"</code> for Arabic + English</li>
+<li><strong>Preprocessing</strong> — Arabic-specific noise patterns (PDF artifacts, repeated text)</li>
+<li><strong>Normalization</strong> — Maps variant Arabic spellings to canonical forms</li>
+<li><strong>Prompts</strong> — All system prompts in Egyptian Arabic dialect</li>
+<li><strong>Output</strong> — Structured with Arabic emoji headers (🐔, 🦠, 🔍, 💊, 🛡️)</li>
+</ol>
+<hr />
+<h3 id="q10-what-is-the-purpose-of-the-reranker">Q10: What is the purpose of the reranker? / ما هو الغرض من إعادة الترتيب؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+The reranker improves retrieval precision by:<br />
+1. Taking the top-k candidates from the initial bi-encoder search<br />
+2. Re-scoring them using a cross-encoder that sees query + document together<br />
+3. Returning the top-k most relevant after re-scoring</p>
+<p><strong>Without reranker:</strong> Top results might be semantically similar but not actually relevant<br />
+<strong>With reranker:</strong> Results are more precisely matched to the query intent</p>
+<p>Trade-off: Adds ~100-200ms latency, but significantly improves answer quality.</p>
+<hr />
+<h3 id="q11-explain-the-projects-directory-structure">Q11: Explain the project's directory structure. / اشرح هيكل مجلدات المشروع</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code>app/
+├── api/            # FastAPI route handlers (chat, image, upload)
+├── rag/            # RAG pipeline (loader, preprocessing, chunking,
+│                   #   embeddings, vector_store, retriever, reranker,
+│                   #   prompt_builder, pipeline)
+├── vision/         # Image classification (preprocessing, classifier,
+│                   #   predictor, explainer)
+├── services/       # Cross-cutting services (knowledge_base_service)
+├── database/       # SQLite persistence (history)
+├── core/           # Config, logging, utilities
+├── components/     # Streamlit UI components (sidebar, header, chat)
+├── pages/          # Streamlit pages (dashboard, assistant, etc.)
+├── streamlit_app.py # Streamlit entry point
+└── main.py         # FastAPI entry point
+</code></pre></div>
+
+<hr />
+<h3 id="q12-how-is-the-system-secured">Q12: How is the system secured? / كيف يتم تأمين النظام؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+1. <strong>API keys</strong> — Never hardcoded; loaded from <code>.env</code> or Streamlit secrets<br />
+2. <strong><code>.gitignore</code></strong> — Excludes <code>.env</code> and <code>secrets.toml</code><br />
+3. <strong>CORS</strong> — Currently allows all origins (should be restricted in production)<br />
+4. <strong>Input validation</strong> — File type checking for image uploads<br />
+5. <strong>No authentication</strong> — Currently no user auth (acceptable for prototype)</p>
+<p><strong>Production recommendations:</strong><br />
+- Add API key authentication<br />
+- Restrict CORS origins<br />
+- Add rate limiting<br />
+- Add input sanitization</p>
+<hr />
+<h3 id="q13-what-is-the-warm-up-mechanism">Q13: What is the warm-up mechanism? / ما هي آلية التسخين؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+    <span class="c1"># 1. Initialize database tables</span>
+    <span class="n">init_db</span><span class="p">()</span>
+    <span class="c1"># 2. Start RAG warm-up in background thread</span>
+    <span class="n">warmup_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">warm_up_rag</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">warmup_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="k">yield</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">warm_up_rag</span><span class="p">():</span>
+    <span class="c1"># 1. Create RAGPipeline (loads embedding model, connects to vector store)</span>
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">RAGPipeline</span><span class="p">()</span>
+    <span class="c1"># 2. Run a test query to compile/cache tokenizers</span>
+    <span class="n">pipeline</span><span class="o">.</span><span class="n">answer_question</span><span class="p">(</span><span class="s2">&quot;test warm up query&quot;</span><span class="p">,</span> <span class="n">session_id</span><span class="o">=</span><span class="s2">&quot;warmup_session&quot;</span><span class="p">)</span>
+    <span class="c1"># 3. Store in global state</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">pipeline</span>
+    <span class="c1"># 4. Signal ready</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">pipeline_ready</span><span class="o">.</span><span class="n">set</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Why background thread?</strong><br />
+- Doesn't block server startup<br />
+- Server can respond to <code>/health</code> immediately<br />
+- First real request waits for warm-up (20s timeout)</p>
+<hr />
+<h3 id="q14-how-does-the-section-extraction-work">Q14: How does the section extraction work? / كيف تعمل استخراج الأقسام؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+After the LLM generates a full diagnosis, we extract only the relevant section based on the user's question:</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">_extract_relevant_section</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
+    <span class="c1"># Detect question type by Arabic keywords:</span>
+    <span class="k">if</span> <span class="s1">&#39;سبب&#39;</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>     <span class="err">→</span> <span class="n">Extract</span> <span class="s2">&quot;🦠 الأسباب:&quot;</span> <span class="n">section</span>
+    <span class="k">if</span> <span class="s1">&#39;أعراض&#39;</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>   <span class="err">→</span> <span class="n">Extract</span> <span class="s2">&quot;🔍 الأعراض:&quot;</span> <span class="n">section</span>
+    <span class="k">if</span> <span class="s1">&#39;علاج&#39;</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>    <span class="err">→</span> <span class="n">Extract</span> <span class="s2">&quot;💊 العلاج:&quot;</span> <span class="n">section</span>
+    <span class="k">if</span> <span class="s1">&#39;وقاية&#39;</span> <span class="ow">in</span> <span class="n">question</span><span class="p">:</span>   <span class="err">→</span> <span class="n">Extract</span> <span class="s2">&quot;🛡️ الوقاية:&quot;</span> <span class="n">section</span>
+    <span class="k">else</span><span class="p">:</span>                     <span class="err">→</span> <span class="n">Return</span> <span class="n">full</span> <span class="n">text</span>
+</code></pre></div>
+
+<p>This provides focused answers instead of dumping the entire diagnosis.</p>
+<hr />
+<h3 id="q15-what-are-the-limitations-of-the-current-system">Q15: What are the limitations of the current system? / ما هي قيود النظام الحالي؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+1. <strong>Small knowledge base</strong> — Only a few PDFs indexed<br />
+2. <strong>No authentication</strong> — Anyone can access the API<br />
+3. <strong>In-memory conversation</strong> — Lost on server restart<br />
+4. <strong>Single-user design</strong> — No multi-tenant support<br />
+5. <strong>No real-time updates</strong> — Must re-index manually<br />
+6. <strong>Limited disease classes</strong> — Only 4 classes in the vision model<br />
+7. <strong>No feedback loop</strong> — Can't learn from user corrections<br />
+8. <strong>JSON vector store</strong> — Won't scale to large knowledge bases<br />
+9. <strong>No caching layer</strong> — No Redis/Memcached for frequent queries<br />
+10. <strong>Basic error handling</strong> — Could be more granular</p>
+<hr />
+<h3 id="q16-how-would-you-scale-this-system">Q16: How would you scale this system? / كيف توسع هذا النظام؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+1. <strong>Vector store</strong> — Switch to ChromaDB/Pinecone/Weaviate<br />
+2. <strong>Database</strong> — Switch to PostgreSQL<br />
+3. <strong>Caching</strong> — Add Redis for query caching<br />
+4. <strong>Authentication</strong> — Add JWT-based auth<br />
+5. <strong>Rate limiting</strong> — Add slowapi or API gateway<br />
+6. <strong>Containerization</strong> — Docker + Kubernetes<br />
+7. <strong>Load balancing</strong> — Multiple FastAPI instances<br />
+8. <strong>Async processing</strong> — Celery for document ingestion<br />
+9. <strong>Monitoring</strong> — Prometheus + Grafana<br />
+10. <strong>CI/CD</strong> — Automated testing and deployment</p>
+<hr />
+<h3 id="q17-explain-the-retry-mechanism">Q17: Explain the retry mechanism. / اشرح آلية إعادة المحاولة</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="n">MAX_RETRIES</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">RETRY_BACKOFF_BASE</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># seconds</span>
+
+<span class="k">for</span> <span class="n">attempt</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">MAX_RETRIES</span><span class="p">):</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">completion</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">chat</span><span class="o">.</span><span class="n">completions</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">completion</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">_is_transient_error</span><span class="p">(</span><span class="n">exc</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attempt</span> <span class="o">&lt;</span> <span class="n">MAX_RETRIES</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">wait</span> <span class="o">=</span> <span class="n">RETRY_BACKOFF_BASE</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">attempt</span><span class="p">)</span>  <span class="c1"># 1s, 2s, 4s</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">wait</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">break</span>  <span class="c1"># Fall back to raw context</span>
+</code></pre></div>
+
+<p><strong>Transient errors:</strong> rate limit, timeout, service unavailable, internal server error, bad gateway, gateway timeout</p>
+<p><strong>Non-transient errors:</strong> invalid API key, model not found → immediate fallback</p>
+<hr />
+<h3 id="q18-how-does-the-query-cache-work">Q18: How does the query cache work? / كيف يعمل ذاكرة الاستعلام المؤقتة؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RAGPipeline</span><span class="p">:</span>
+    <span class="n">_query_cache</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">],</span> <span class="o">...</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_cached_or_compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">])</span>
+        <span class="n">candidates</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">retriever</span><span class="o">.</span><span class="n">retrieve</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+        <span class="n">top_chunks</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reranker</span><span class="o">.</span><span class="n">rerank</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">candidates</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_query_cache</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">top_chunks</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">top_chunks</span>
+</code></pre></div>
+
+<ul>
+<li>Cache key: normalized query (lowercase, stripped)</li>
+<li>Cache value: tuple of retrieved + reranked chunks</li>
+<li>Avoids re-computing embeddings and similarity search for repeated queries</li>
+<li>In-memory only (cleared on restart)</li>
+</ul>
+<hr />
+<h3 id="q19-what-is-the-role-of-statepy-statepy">Q19: What is the role of <code>state.py</code>? / ما هو دور <code>state.py</code>؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AppState</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline</span> <span class="o">=</span> <span class="kc">None</span>                    <span class="c1"># RAGPipeline instance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pipeline_ready</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Event</span><span class="p">()</span>  <span class="c1"># Synchronization primitive</span>
+
+<span class="n">state</span> <span class="o">=</span> <span class="n">AppState</span><span class="p">()</span>  <span class="c1"># Global singleton</span>
+</code></pre></div>
+
+<p><strong>Purpose:</strong><br />
+- Stores the warmed-up RAG pipeline instance<br />
+- <code>pipeline_ready</code> event synchronizes startup:<br />
+  - Background thread sets it when warm-up completes<br />
+  - API handlers wait on it before processing requests<br />
+- Thread-safe communication between warm-up thread and request handlers</p>
+<hr />
+<h3 id="q20-how-does-the-explainer-format-arabic-output">Q20: How does the Explainer format Arabic output? / كيف يُنسق الشرح النص العربي؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+The <code>DiagnosisExplainer._build_arabic_explanation()</code> method:</p>
+<ol>
+<li>
+<p><strong>Healthy path</strong> — Short format:<br />
+<code>🐔 تشخيص المرض: صحي بثقة 95%.
+   ⚠️ يُرجى تأكيد التشخيص بواسطة طبيب بيطري.</code></p>
+</li>
+<li>
+<p><strong>Disease path</strong> — Full format:<br />
+   ```<br />
+   🐔 تشخيص المرض: الكوكسيديا بثقة 87%.<br />
+   ⚠️ يُرجى تأكيد التشخيص بواسطة طبيب بيطري.</p>
+</li>
+</ol>
+<p>🦠 الأسباب:<br />
+   - سبب 1<br />
+   - سبب 2</p>
+<p>🔍 الأعراض:<br />
+   - عرض 1<br />
+   - عرض 2</p>
+<p>💊 العلاج:<br />
+   - علاج 1<br />
+   - علاج 2</p>
+<p>🛡️ الوقاية:<br />
+   - وقاية 1</p>
+<p>📌 ملاحظة:<br />
+   النتيجة دي معمولة بالذكاء الاصطناعي بهدف المساعدة، لكنها ما تغنيش عن تشخيص الطبيب البيطري.<br />
+   ```</p>
+<ol>
+<li><strong>Parsing</strong> — Tries JSON first, falls back to keyword-based paragraph classification</li>
+</ol>
+<hr />
+<h3 id="q21-what-testing-is-in-place">Q21: What testing is in place? / ما هي الاختبارات الموجودة؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+Two test files:</p>
+<p><strong><code>test_rag_pipeline.py</code> (6 tests):</strong><br />
+1. <code>test_clean_text_normalizes_hyphenated_line_breaks</code> — Text preprocessing<br />
+2. <code>test_chunk_text_returns_overlapping_chunks</code> — Chunking logic<br />
+3. <code>test_embedding_model_returns_vectors</code> — Embedding generation<br />
+4. <code>test_vector_store_round_trip</code> — Store + retrieve<br />
+5. <code>test_pipeline_returns_answer_and_sources</code> — Full pipeline<br />
+6. <code>test_fallback_uses_retrieved_context_when_llm_is_unavailable</code> — Graceful degradation</p>
+<p><strong><code>test_database.py</code> (3 tests):</strong><br />
+1. <code>test_init_db_creates_tables</code> — Schema creation<br />
+2. <code>test_log_chat_inserts_record</code> — Chat logging<br />
+3. <code>test_log_diagnosis_inserts_record</code> — Diagnosis logging</p>
+<hr />
+<h3 id="q22-how-does-the-system-handle-different-file-formats">Q22: How does the system handle different file formats? / كيف يتعامل النظام مع صيغ الملفات المختلفة؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">load_document</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RawDocument</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="n">suffix</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">suffix</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.pdf&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_pdf</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>      <span class="c1"># pypdf → OCR fallback</span>
+    <span class="k">if</span> <span class="n">suffix</span> <span class="o">==</span> <span class="s2">&quot;.docx&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">load_docx</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>     <span class="c1"># python-docx</span>
+    <span class="k">return</span> <span class="kc">None</span>                    <span class="c1"># Unsupported format</span>
+</code></pre></div>
+
+<p><strong>PDF handling:</strong><br />
+1. Try <code>pypdf</code> (fast, clean text)<br />
+2. If &lt; 500 chars, try OCR (PyMuPDF + Tesseract)</p>
+<p><strong>DOCX handling:</strong><br />
+1. Extract paragraphs<br />
+2. Extract tables (pipe-separated cells)</p>
+<p><strong>Unsupported:</strong> Returns <code>None</code>, logged as warning</p>
+<hr />
+<h3 id="q23-what-is-the-purpose-of-normalizerpy-normalizerpy">Q23: What is the purpose of <code>normalizer.py</code>? / ما هو الغرض من <code>normalizer.py</code>؟</h3>
+<p><strong>Answer / الإجابة:</strong><br />
+Normalizes Arabic text by mapping variant spellings to canonical forms:</p>
+<div class="highlight"><pre><span></span><code><span class="n">_VARIANT_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;نيوكاسيل&quot;</span><span class="p">:</span> <span class="s2">&quot;نيوكاسل&quot;</span><span class="p">,</span>      <span class="c1"># Common misspelling</span>
+    <span class="s2">&quot;النيوكاسيل&quot;</span><span class="p">:</span> <span class="s2">&quot;النيوكاسل&quot;</span><span class="p">,</span>   <span class="c1"># With article</span>
+    <span class="s2">&quot;اتش بي&quot;</span><span class="p">:</span> <span class="s2">&quot;ايب&quot;</span><span class="p">,</span>            <span class="c1"># H.P. → IB (Infectious Bronchitis)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p><strong>Why?</strong><br />
+- Users may type disease names differently<br />
+- Arabic has many spelling variants<br />
+- Normalization improves retrieval accuracy<br />
+- Maps colloquial terms to standard veterinary terms</p>
+<hr />
+<h3 id="q24-explain-the-lifespan-context-manager-lifespan">Q24: Explain the lifespan context manager. / اشرح مدير سياق lifespan</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="nd">@asynccontextmanager</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">lifespan</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+    <span class="c1"># STARTUP:</span>
+    <span class="c1"># 1. Initialize database</span>
+    <span class="n">init_db</span><span class="p">()</span>
+    <span class="c1"># 2. Start RAG warm-up in background</span>
+    <span class="n">warmup_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">warm_up_rag</span><span class="p">,</span> <span class="n">daemon</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">warmup_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+    <span class="k">yield</span>  <span class="c1"># Server is running, accepting requests</span>
+
+    <span class="c1"># SHUTDOWN:</span>
+    <span class="c1"># (Nothing to clean up currently)</span>
+</code></pre></div>
+
+<p><strong>Why <code>asynccontextmanager</code>?</strong><br />
+- FastAPI's recommended way to handle startup/shutdown<br />
+- Code before <code>yield</code> runs on startup<br />
+- Code after <code>yield</code> runs on shutdown<br />
+- <code>daemon=True</code> ensures warm-up thread dies with the main process</p>
+<hr />
+<h3 id="q25-how-would-you-improve-this-project">Q25: How would you improve this project? / كيف تحسين هذا المشروع؟</h3>
+<p><strong>Answer / الإجابة:</strong></p>
+<p><strong>Short-term (1-2 weeks):</strong><br />
+1. Implement the <code>/upload/pdf</code> endpoint<br />
+2. Add input validation (empty questions, file size limits)<br />
+3. Add API authentication (API keys or JWT)<br />
+4. Fix hardcoded API URLs in frontend<br />
+5. Add more comprehensive tests</p>
+<p><strong>Medium-term (1-2 months):</strong><br />
+1. Switch to ChromaDB for vector storage<br />
+2. Add Redis caching for frequent queries<br />
+3. Implement conversation persistence in SQLite<br />
+4. Add rate limiting<br />
+5. Add monitoring and logging (structured logs)</p>
+<p><strong>Long-term (3-6 months):</strong><br />
+1. Add more disease classes to the vision model<br />
+2. Implement user feedback loop (learn from corrections)<br />
+3. Add multi-language support (English interface)<br />
+4. Deploy with Docker + Kubernetes<br />
+5. Add real-time document ingestion (watch folder)<br />
+6. Implement A/B testing for different prompts</p>
+<hr />
+<h2 id="12-viva-cheat-sheet">12. Viva Cheat Sheet / ورقة غش المناقشة</h2>
+<h3 id="key-numbers-to-remember">Key Numbers to Remember / أرقام مهمة للتذكر</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedding dimensions</td>
+<td>384</td>
+</tr>
+<tr>
+<td>Image input size</td>
+<td>224 × 224 × 3</td>
+</tr>
+<tr>
+<td>Number of disease classes</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Default chunk size</td>
+<td>450 characters</td>
+</tr>
+<tr>
+<td>Default chunk overlap</td>
+<td>200 characters</td>
+</tr>
+<tr>
+<td>Retriever top_k</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Reranker top_k</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Max conversation turns</td>
+<td>10</td>
+</tr>
+<tr>
+<td>History turns in prompt</td>
+<td>6</td>
+</tr>
+<tr>
+<td>Confidence threshold</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>Max retries</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Retry backoff</td>
+<td>1s, 2s, 4s</td>
+</tr>
+<tr>
+<td>Warm-up timeout</td>
+<td>20 seconds</td>
+</tr>
+<tr>
+<td>OCR DPI</td>
+<td>300</td>
+</tr>
+</tbody>
+</table>
+<h3 id="one-line-explanations">One-Line Explanations / شرح في سطر واحد</h3>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>One-liner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RAG</td>
+<td>Retrieve relevant docs → feed to LLM → grounded answer</td>
+</tr>
+<tr>
+<td>Bi-encoder</td>
+<td>Encodes query &amp; doc independently → fast retrieval</td>
+</tr>
+<tr>
+<td>Cross-encoder</td>
+<td>Encodes query+doc together → accurate reranking</td>
+</tr>
+<tr>
+<td>Chunking</td>
+<td>Split text into overlapping pieces for embedding</td>
+</tr>
+<tr>
+<td>Cosine similarity</td>
+<td>Measures angle between vectors → semantic similarity</td>
+</tr>
+<tr>
+<td>Warm-up</td>
+<td>Pre-load models in background so first request is fast</td>
+</tr>
+<tr>
+<td>Graceful degradation</td>
+<td>If LLM fails, return raw retrieved context</td>
+</tr>
+<tr>
+<td>Conversation memory</td>
+<td>Keep last 10 turns for context-aware answers</td>
+</tr>
+<tr>
+<td>OCR fallback</td>
+<td>If pypdf fails, render pages as images and OCR them</td>
+</tr>
+<tr>
+<td>Section extraction</td>
+<td>Extract only the relevant part of the diagnosis</td>
+</tr>
+</tbody>
+</table>
+<h3 id="architecture-in-30-seconds-30">Architecture in 30 Seconds / البنية في 30 ثانية</h3>
+<div class="highlight"><pre><span></span><code>User → Streamlit → FastAPI → RAGPipeline
+                                ├── Retriever (bi-encoder search)
+                                ├── Reranker (cross-encoder re-score)
+                                ├── PromptBuilder (Arabic prompts)
+                                └── LLM (OpenRouter/GPT-4o-mini)
+                             → Response
+</code></pre></div>
+
+<h3 id="common-professor-traps">Common Professor Traps / مصائد المحاضر الشائعة</h3>
+<table>
+<thead>
+<tr>
+<th>Trap</th>
+<th>Correct Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Why not use GPT-4 directly?"</td>
+<td>Cost, latency, and we need domain-specific context (RAG)</td>
+</tr>
+<tr>
+<td>"Why not use ChromaDB?"</td>
+<td>JSON is simpler for prototype; would switch for production</td>
+</tr>
+<tr>
+<td>"Why Egyptian Arabic?"</td>
+<td>Target audience is Egyptian farmers; MSA would feel formal</td>
+</tr>
+<tr>
+<td>"Why 40% threshold?"</td>
+<td>Above random (25%) but still uncertain; prevents misleading</td>
+</tr>
+<tr>
+<td>"Why rerank at all?"</td>
+<td>Bi-encoder is fast but imprecise; cross-encoder catches nuances</td>
+</tr>
+<tr>
+<td>"Why not fine-tune the LLM?"</td>
+<td>RAG is cheaper, updatable, and provides source attribution</td>
+</tr>
+<tr>
+<td>"Why sentence-aware chunking?"</td>
+<td>Preserves semantic完整性; avoids mid-sentence cuts</td>
+</tr>
+<tr>
+<td>"Why multilingual embeddings?"</td>
+<td>Knowledge base has Arabic + English content</td>
+</tr>
+</tbody>
+</table>
+<h3 id="file-quick-reference">File Quick Reference / مرجع سريع للملفات</h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+<th>Lines</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>config.py</code></td>
+<td>All settings in one place</td>
+<td>~90</td>
+</tr>
+<tr>
+<td><code>loader.py</code></td>
+<td>PDF/DOCX loading + OCR</td>
+<td>~230</td>
+</tr>
+<tr>
+<td><code>preprocessing.py</code></td>
+<td>Text cleaning</td>
+<td>~150</td>
+</tr>
+<tr>
+<td><code>chunking.py</code></td>
+<td>Text splitting</td>
+<td>~90</td>
+</tr>
+<tr>
+<td><code>embeddings.py</code></td>
+<td>Sentence-transformers wrapper</td>
+<td>~50</td>
+</tr>
+<tr>
+<td><code>vector_store.py</code></td>
+<td>JSON vector store</td>
+<td>~95</td>
+</tr>
+<tr>
+<td><code>retriever.py</code></td>
+<td>Semantic search</td>
+<td>~35</td>
+</tr>
+<tr>
+<td><code>reranker.py</code></td>
+<td>Cross-encoder reranking</td>
+<td>~60</td>
+</tr>
+<tr>
+<td><code>prompt_builder.py</code></td>
+<td>Arabic prompts</td>
+<td>~170</td>
+</tr>
+<tr>
+<td><code>pipeline.py</code></td>
+<td>Full RAG orchestration</td>
+<td>~250</td>
+</tr>
+<tr>
+<td><code>classifier.py</code></td>
+<td>TF model loader</td>
+<td>~40</td>
+</tr>
+<tr>
+<td><code>predictor.py</code></td>
+<td>Image → prediction</td>
+<td>~35</td>
+</tr>
+<tr>
+<td><code>explainer.py</code></td>
+<td>Vision → RAG bridge</td>
+<td>~180</td>
+</tr>
+<tr>
+<td><code>history.py</code></td>
+<td>SQLite persistence</td>
+<td>~90</td>
+</tr>
+<tr>
+<td><code>main.py</code></td>
+<td>FastAPI entry point</td>
+<td>~90</td>
+</tr>
+<tr>
+<td><code>streamlit_app.py</code></td>
+<td>Streamlit entry point</td>
+<td>~120</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="final-notes">📝 Final Notes / ملاحظات ختامية</h2>
+<h3 id="project-strengths">Project Strengths / نقاط قوة المشروع</h3>
+<ol>
+<li>Clean separation of concerns (RAG, Vision, API, Frontend)</li>
+<li>Comprehensive Arabic support (prompts, OCR, normalization)</li>
+<li>Graceful degradation (fallback when LLM fails)</li>
+<li>Good error handling (retry with backoff)</li>
+<li>Professional UI with dark theme</li>
+<li>Well-documented code with docstrings</li>
+</ol>
+<h3 id="project-weaknesses">Project Weaknesses / نقاط ضعف المشروع</h3>
+<ol>
+<li>No authentication/authorization</li>
+<li>JSON vector store (won't scale)</li>
+<li>In-memory conversation (lost on restart)</li>
+<li>Limited test coverage</li>
+<li>No CI/CD pipeline</li>
+<li>Hardcoded URLs in frontend</li>
+</ol>
+<h3 id="future-improvements">Future Improvements / تحسينات مستقبلية</h3>
+<ol>
+<li>Add JWT authentication</li>
+<li>Switch to ChromaDB/Pinecone</li>
+<li>Add Redis caching</li>
+<li>Implement Docker deployment</li>
+<li>Add comprehensive test suite</li>
+<li>Add monitoring and alerting</li>
+<li>Support more disease classes</li>
+<li>Add user feedback mechanism</li>
+</ol>
+<hr />
+<p><strong>Document Version:</strong> 1.0<br />
+<strong>Date:</strong> 2026-08-27<br />
+<strong>Project:</strong> Poultry Disease RAG System<br />
+<strong>Author:</strong> Project Documentation Team</p>
+<hr />
+<blockquote>
+<p>⚠️ <strong>Disclaimer / تنبيه:</strong> This documentation is for educational and viva preparation purposes. The AI system provides informational support and does not replace professional veterinary diagnosis.</p>
+<p>⚠️ <strong>تنبيه:</strong> هذا التوثيق لأغراض التعليم والتحضير للمناقشة. يوفر النظام الدعم المعلوماتي ولا يحل محل التشخيص البيطري المهني.</p>
+</blockquote>
+</body>
+</html>

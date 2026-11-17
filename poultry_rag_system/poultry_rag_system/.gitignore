@@ -1,0 +1,17 @@
+# Secrets
+.env
+.streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+venv/
+.venv/
+
+# Vector DB / models / data (usually large / generated)
+# Note: vector_db, models, and data/pdfs are tracked via root .gitignore
+
+# IDE / OS
+.DS_Store
+.vscode/
+.idea/

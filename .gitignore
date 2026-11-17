@@ -1,0 +1,65 @@
+# Environments & Virtualenvs
+venv/
+.venv/
+.venv311/
+backend_env/
+env/
+**/venv/
+**/.venv/
+**/.venv311/
+**/backend_env/
+
+# Secrets & Environment Variables
+.env
+**/.env
+.streamlit/secrets.toml
+**/.streamlit/secrets.toml
+*.local
+
+# Python Bytecode & Caches
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+**/.pytest_cache/
+
+# Node & Frontend Build
+node_modules/
+**/node_modules/
+dist/
+**/dist/
+dist-ssr/
+
+# Local Databases & Temporary Test Stores
+*.db
+*.sqlite3
+predictions.db
+history.sqlite3
+tmp_test_vector_db/
+**/tmp_test_vector_db/
+
+# Large Image Datasets & Duplicate Media (Keep repo lightweight & fast)
+poultry_rag_system/poultry_rag_system/data/images/
+poultry_rag_system/poultry_rag_system/data/Zenodo Dataset/
+poultry_rag_system/poultry_rag_system/data/*.mp4
+poultry_rag_system/models/*.keras
+
+# Nested Git Repositories
+**/.git_backup/
+Early Diseas poultry - Final/.git/
+Early Diseas poultry - Final/.git_backup/
+poultry_rag_system/.git/
+poultry_rag_system/.git_backup/
+
+# IDE & OS
+.vscode/
+.idea/
+.claude/
+**/.claude/
+push_log.txt
+**/push_log.txt
+.DS_Store
+Thumbs.db
+.ipynb_checkpoints/

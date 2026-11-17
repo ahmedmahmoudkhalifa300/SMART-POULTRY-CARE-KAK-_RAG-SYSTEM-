@@ -1,0 +1,27 @@
+# Virtual Environments
+venv/
+.venv/
+.venv311/
+backend_env/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.db
+predictions.db
+
+# Node
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/

@@ -1,0 +1,27 @@
+# --- Backend ---
+fastapi
+uvicorn[standard]
+python-multipart
+pydantic
+
+# --- Frontend ---
+streamlit
+
+# --- RAG / Retrieval ---
+pypdf
+numpy
+pymupdf
+pytesseract
+python-docx
+sentence-transformers
+
+# --- LLM access (OpenRouter is OpenAI-compatible) ---
+openai
+
+# --- Vision / image handling ---
+pillow
+tensorflow
+
+# --- Utilities ---
+python-dotenv
+loguru
