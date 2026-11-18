@@ -130,10 +130,31 @@ flowchart TD
 
 ## 📈 Results
 
-### 1. System Performance & Technical Benchmarks
+### 1. Computer Vision Model Evaluation (MobileNetV2 Transfer Learning)
+The disease classifier (`best_model.keras` / `poultry_classifier.keras`) is built on **MobileNetV2 (ImageNet weights)** with a custom classification head, trained with `Adam (lr = 0.001)`, `Categorical Crossentropy`, class weighting (`NCD weight = 4.5293`), and data augmentation:
+
+#### Overall Performance Metrics
+| Evaluation Metric | Training / Validation Benchmark | Test Split Benchmark (`1,022` Images) | Extended Test Set (`1,214` Images) |
+| :--- | :---: | :---: | :---: |
+| **Best Validation Accuracy** | **91.39%** *(Val Loss: `0.2413`)* | — | — |
+| **Overall Test Accuracy** | — | **90.51%** *(Test Loss: `0.2523`)* | **86.49%** |
+| **Weighted F1-Score** | — | **~90.50%** | **86.66%** |
+| **Weighted Precision** | — | — | **86.90%** |
+| **Weighted Recall** | — | — | **86.49%** |
+| **Macro F1-Score** | — | — | **81.30%** |
+
+#### Per-Class Classification Report & Accuracy Breakdown
+| Disease Class | Precision | Recall | F1-Score | Benchmark Class Accuracy | Test Support |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **Coccidiosis (الكوكسيديا)** | **96.61%** | **91.94%** | **94.21%** | **95.25%** ✅ | 372 |
+| **Salmonella (السالمونيلا)** | **85.79%** | **87.09%** | **86.43%** | **93.55%** ✅ | 395 |
+| **Healthy (سليم / صحي)** | **85.44%** | **85.91%** | **85.67%** | **88.31%** ✅ | 362 |
+| **New Castle Disease (مرض نيوكاسل)** | **55.79%** | **62.35%** | **58.89%** | **57.89%** ⚠️ | 85 |
+| **Weighted Average** | **86.90%** | **86.49%** | **86.66%** | **90.51%** | **1,214** |
+
+### 2. End-to-End System & RAG Benchmarks
 | Component / Metric | Specification / Result | Operational Impact |
 | :--- | :--- | :--- |
-| **Disease Classification Scope** | 4 Classes (`Coccidiosis`, `Healthy`, `Newcastle`, `Salmonella`) | Covers the most economically devastating enteric & viral poultry diseases |
 | **Vision Input Resolution & Latency** | `224 × 224 × 3` RGB • **< 150 ms** per image (Singleton inference) | Instant on-farm diagnosis from smartphone photos |
 | **Safety Confidence Threshold** | **40% (`0.40`)** minimum probability gate | Eliminates reckless treatment recommendations on blurry/invalid images |
 | **Retrieval Precision Architecture** | Bi-Encoder (`Top-5`) $\rightarrow$ Cross-Encoder Reranker (`Top-3`) | Maximizes context relevance while eliminating LLM medical hallucinations |
@@ -141,7 +162,7 @@ flowchart TD
 | **API Fault Tolerance** | 3x Exponential Backoff + Offline Raw-Context Fallback | **100% availability** of veterinary guidelines even during internet/API outages |
 | **Automated Test Suite** | **9 / 9 Unit & Integration Tests Passing** (`pytest`) | Verified OCR/text cleaning, chunk overlap, vector store round-trip, and SQLite logging |
 
-### 2. Platform User Interface Showcase (KAK Smart Poultry Care)
+### 3. Platform User Interface Showcase (KAK Smart Poultry Care)
 Below are live screenshots from the **KAK Smart Poultry Care** platform demonstrating the end-to-end user journey:
 
 | 🔐 **1. Authentication & Onboarding** | 🏭 **2. Production Type Selection** |
